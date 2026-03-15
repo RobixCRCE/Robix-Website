@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Robix Official</title>
+
+<script type="module"
+  src="https://unpkg.com/@splinetool/viewer@1.12.20/build/spline-viewer.js">
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Orbitron', sans-serif;
+  background: #05070a;
+}
+
+/* Spline stays interactive */
+spline-viewer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* UI container DOES NOT block mouse */
+#ui {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Ensure #ui children can be interacted with */
+#ui > * {
+  pointer-events: auto;
+  
+}
+
+/* Bottom-right simple box */
+#bottomBox {
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  width: 300px;
+  padding: 16px;
+  border-radius: 8px;
+  background: #000; /* solid black */
+  border: 1px solid #222;
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+  z-index: 20; /* ensure above spline-viewer */
+}
+
+
+/* Toggle button */
+#menuToggle {
+  pointer-events: auto;
+  position: absolute;
+  top: 22px;
+  left: 22px;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  font-size: 26px;
+  color: rgb(0, 0, 0);
+  background: linear-gradient(270deg, #ffffff, #e0e0e0, #ffffff, #f8f8f8);
+  background-size: 400% 400%;
+  animation: whiteGlow 4s linear infinite;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255,255,255,0.7), 0 0 50px rgba(200,200,255,0.2) inset;
+}
+
+@keyframes whiteGlow {
+  0% { background-position: 0% }
+  50% { background-position: 200% }
+  100% { background-position: 400% }
+}
+
+/* Side menu */
+#sideMenu {
+  pointer-events: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 100%;
+  padding: 100px 22px;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(16px);
+  transform: translateX(-100%);
+  transition: transform 0.45s cubic-bezier(.2,.8,.2,1);
+  border-right: 2px solid;
+  border-image: linear-gradient(to bottom, #fff, #e0e0e0, #fff) 1;
+}
+
+#sideMenu.open {
+  transform: translateX(0);
+}
+
+#sideMenu h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 28px;
+  background: linear-gradient(to right, #fff, #e0e0e0, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes textPulse {
+  0%,100% { opacity: 0.85; text-shadow: 0 0 10px #fff, 0 0 20px #e0e0e0; }
+  50% { opacity: 1; text-shadow: 0 0 25px #fff, 0 0 45px #e0e0e0; }
+}
+
+.menuItem {
+  padding: 18px 22px;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  color: white;
+  cursor: pointer;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid transparent;
+  border-image: linear-gradient(to right, #fff, #e0e0e0, #fff) 1;
+  transition: transform .25s, box-shadow .25s;
+  animation: menuItemGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes menuItemGlow {
+  0% { box-shadow: 0 0 5px rgba(255,255,255,0.2); }
+  50% { box-shadow: 0 0 15px rgba(255,255,255,0.4); }
+  100% { box-shadow: 0 0 25px rgba(255,255,255,0.6); }
+}
+
+.menuItem:hover {
+  transform: translateX(10px);
+  box-shadow: 0 0 35px rgba(255,255,255,0.9), 0 0 60px rgba(180,220,255,0.3) inset;
+}
+
+/* Content card */
+#content {
+  pointer-events: auto;
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  width: 380px;
+  padding: 26px;
+  border-radius: 18px;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(16px);
+  border: 2px solid;
+  border-image: linear-gradient(to right, #fff, #e0e0e0, #fff) 1;
+  color: white;
+  display: none;
+  animation: pop 0.35s ease;
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: translateY(25px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+#content h3 {
+  margin-top: 0;
+  background: linear-gradient(to right, #fff, #e0e0e0, #fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textPulse 2.5s ease-in-out infinite;
+}
+
+#closeContent {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<spline-viewer
+  url="https://prod.spline.design/VIC2YvWi58F4G5fa/scene.splinecode">
+</spline-viewer>
+
+<div id="ui">
+<div id="bottomBox">
+  Website Made by Aman Dsouza
+</div>
+
+  <button id="menuToggle">☰</button>
+
+  <div id="sideMenu">
+    <img src="RobixLogo-removebg-preview (1).png" alt="ROBIX Logo" style="width: 100%; margin-bottom: 20px;" height="250px" width="10px"/>
+    <div class="menuItem" data-page="about">ABOUT US</div>
+    <div class="menuItem" data-page="events">EVENTS</div>
+    <div class="menuItem" data-page="competitions">COMPETITIONS</div>
+    <div class="menuItem" data-page="social">SOCIAL MEDIA</div>
+    <div class="menuItem" data-page="projects">PROJECTS</div>
+  </div>
+
+  <div id="content">
+    <div id="closeContent">✖</div>
+    <div id="contentBody"></div>
+  </div>
+
+</div>
+
+<script>
+const menuToggle = document.getElementById("menuToggle");
+const sideMenu = document.getElementById("sideMenu");
+const content = document.getElementById("content");
+const contentBody = document.getElementById("contentBody");
+
+menuToggle.onclick = () => {
+  sideMenu.classList.toggle("open");
+};
+
+document.querySelectorAll(".menuItem").forEach(item => {
+  item.onclick = () => {
+    sideMenu.classList.remove("open");
+    showContent(item.dataset.page);
+  };
+});
+
+document.getElementById("closeContent").onclick = () => {
+  content.style.display = "none";
+};
+
+function showContent(page) {
+  const data = {
+    about: "<h3>About Us</h3><p>ROBIX is a futuristic robotics and innovation collective.</p>",
+    events: "<h3>Events</h3><p>Hackathons, tech talks, live builds.</p>",
+    competitions: "<h3>Competitions</h3><p>National & international robotics challenges.</p>",
+    social: "<h3>Social Media</h3><p>Instagram · LinkedIn · GitHub</p>",
+    projects: "<h3>Projects</h3><p>Autonomous bots, AI vision, IoT systems.</p>"
+  };
+  contentBody.innerHTML = data[page];
+  content.style.display = "block";
+}
+</script>
+
+
+
+
+
+</body>
+</html>
