@@ -1,5 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Responsive Spline View</title>
+
+  <!-- Spline Viewer -->
+  
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+    }
+
+    #device-text {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 10;
+      font-size: 2rem;
+    }
+
+    #spline-container {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100vh;
+    }
+
+    spline-viewer {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <title>Robix Official</title>
@@ -838,7 +882,6 @@ spline-viewer {
 
 <!-- NAV -->
 <nav id="topNav">
-  <div class="nav-title">CHAPTERS</div>
   <div class="nav-links">
     <a href="#top"          class="nav-link active">Home</a>
     <a href="#about"        class="nav-link">About</a>
@@ -850,13 +893,78 @@ spline-viewer {
   </div>
 </nav>
 
-<!-- SPLINE -->
-<spline-viewer url="https://prod.spline.design/VIC2YvWi58F4G5fa/scene.splinecode"></spline-viewer>
+
+
+<div id="device-text"></div>
+
+  <div id="spline-container"></div>
+
+  <script>
+    const MOBILE_WIDTH = 768;
+
+    function loadScene(sceneURL) {
+
+      const container =
+        document.getElementById("spline-container");
+
+      // Remove previous scene
+      container.innerHTML = "";
+
+      // Create viewer
+      const viewer =
+        document.createElement("spline-viewer");
+
+      viewer.setAttribute("url", sceneURL);
+
+      viewer.setAttribute(
+        "loading-anim-type",
+        "spinner-small-dark"
+      );
+
+      container.appendChild(viewer);
+    }
+
+    function checkDevice() {
+
+      const text =
+        document.getElementById("device-text");
+
+      // MOBILE VIEW
+      if (window.innerWidth <= MOBILE_WIDTH) {
+
+       
+
+        loadScene(
+          "https://prod.spline.design/5LlEcRIaHmoA89oI/scene.splinecode"
+        );
+      }
+
+      // DESKTOP VIEW
+      else {
+
+       
+
+        loadScene(
+          "https://prod.spline.design/VIC2YvWi58F4G5fa/scene.splinecode"
+        );
+      }
+    }
+
+    // Initial check
+    checkDevice();
+
+    // Recheck on resize
+    window.addEventListener("resize", checkDevice);
+  </script>
+
+
+
+
 
 <!-- UI OVERLAY -->
 <div id="ui">
   <div id="bottomBox">Website Made by Aman Dsouza</div>
-  <button id="menuToggle">☰</button>
+  
   <div id="sideMenu">
     <img src="RobixLogo-removebg-preview (1).png" alt="ROBIX Logo" style="width:100%;margin-bottom:20px;" height="250px"/>
     <div class="menuItem" data-page="about">ABOUT US</div>
@@ -1473,4 +1581,8 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 </body>
+</html>
+
+</body>
+
 </html>
