@@ -278,6 +278,7 @@ spline-viewer {
 .section-title {
   color:#fff; font-size:48px; margin-bottom:50px;
   text-transform:uppercase; letter-spacing:4px; position:relative; text-align:center;
+  
 }
 .section-title::after {
   content:''; position:absolute; bottom:-15px; left:50%; transform:translateX(-50%);
@@ -734,6 +735,7 @@ spline-viewer {
   flex: 0 0 auto; width: min(30vw, 320px);
   position: sticky; top: 0; height: 100vh;
   display: flex; flex-direction: column; justify-content: center; align-self: flex-start;
+  text-align: center;
 }
 .about-kicker {
   margin: 0 0 12px; color: rgba(255,255,255,0.45); letter-spacing: 5px;
@@ -752,6 +754,7 @@ spline-viewer {
 .about-line {
   width: 48px; height: 3px; background: #ff4444;
   box-shadow: 0 0 12px rgba(255,68,68,0.8); margin-top: 18px; border-radius: 2px;
+  
 }
 .about-word-list {
   flex: 0 0 auto; width: min(40vw, 480px);
@@ -905,7 +908,6 @@ spline-viewer {
   </div>
 </nav>
 
-/*ASPECT CHANGE SPLINE CHANGE*/
 <div id="device-text"></div>
   <div id="spline-container"></div>
   <script>
@@ -967,31 +969,6 @@ background: #000000;  }
 </style>
 
 
-<div id="bottomBox">
-  Robix CRCE 2026
-</div>  
-  <div id="sideMenu">
-    <img src="RobixLogo-removebg-preview (1).png" alt="ROBIX Logo" style="width:100%;margin-bottom:20px;" height="250px"/>
-    <div class="menuItem" data-page="about">ABOUT US</div>
-    <div class="menuItem" data-page="events">EVENTS</div>
-    <div class="menuItem" data-page="competitions">COMPETITIONS</div>
-    <div class="menuItem" data-page="social">SOCIAL MEDIA</div>
-    <div class="menuItem" data-page="projects">PROJECTS</div>
-  </div>
-  <div id="content">
-    <div id="closeContent">✖</div>
-    <div id="contentBody"></div>
-  </div>
-</div>
-<script>
-const menuToggle=document.getElementById("menuToggle"),sideMenu=document.getElementById("sideMenu"),
-      content=document.getElementById("content"),contentBody=document.getElementById("contentBody");
-menuToggle.onclick=()=>sideMenu.classList.toggle("open");
-document.querySelectorAll(".menuItem").forEach(item=>{
-  item.onclick=()=>{sideMenu.classList.remove("open");showContent(item.dataset.page);};
-});
-</script>
-
 <div id="spacer" style="height:100vh;width:100%;pointer-events:none;"></div>
 
 
@@ -1012,17 +989,49 @@ document.querySelectorAll(".menuItem").forEach(item=>{
 </section>
 
 <!-- ═══════════════════ ABOUT ═══════════════════ -->
+
 <script>
 gsap.registerPlugin(ScrollTrigger);
 
+
+ScrollTrigger.create({
+  trigger: "#about",
+
+  start: "top center",
+
+  end: "bottom center",
+
+  onEnter: () => setActiveNav("about"),
+
+  onEnterBack: () => setActiveNav("about")
+});
+
+function setActiveNav(id) {
+
+  document
+    .querySelectorAll(".nav-link")
+    .forEach(link => {
+
+      link.classList.remove("active");
+
+      if (
+        link.getAttribute("href") === `#${id}`
+      ) {
+        link.classList.add("active");
+      }
+    });
+}
+
+
+
 const words = [
-  "platforms.",
-  "web applications.",
-  "interfaces.",
+  "robots.",
+  "IoT Projects.",
+  "electronics systems.",
   "design systems.",
-  "API platforms.",
-  "backend systems.",
-  "automation workflows.",
+  "web applications.",
+  "printed circuit boards.",
+  "automation projects.",
   "technical foundations."
 ];
 
