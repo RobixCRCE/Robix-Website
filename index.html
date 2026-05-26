@@ -711,9 +711,17 @@ spline-viewer {
    ABOUT SECTION
 ═══════════════════════════════════════════ */
 .about-scroll-section {
-  position: relative; min-height: 100vh; padding: 0; margin: 0;
-  background: radial-gradient(circle at center, rgba(255,0,0,0.08), transparent 35%),
-              linear-gradient(180deg, #05070a 0%, #05070a 100%);
+  position: relative;
+  min-height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  background: linear-gradient(
+    180deg,
+    #000000 0%,
+    #05070a 100%
+  );
+
   overflow: hidden;
 }
 .about-shell { width: 100%; }
@@ -777,7 +785,7 @@ spline-viewer {
   align-items: center;
   overflow: hidden;
   position: relative;
-  background-color: #07080e;
+  background-color: #05070a;
   background-size: cover;
   background-position: center;
   background-blend-mode: overlay;
@@ -863,6 +871,10 @@ spline-viewer {
   transform: rotateY(180deg) translateZ(1px);
   z-index: 1;
 }
+
+/*THIS IS THE END OF ALL DAT CSS BS BUT THERES MORE ACTUALLY LATER*/
+
+
 </style>
 </head>
 
@@ -893,47 +905,31 @@ spline-viewer {
   </div>
 </nav>
 
-
-
+/*ASPECT CHANGE SPLINE CHANGE*/
 <div id="device-text"></div>
-
   <div id="spline-container"></div>
-
   <script>
     const MOBILE_WIDTH = 768;
-
     function loadScene(sceneURL) {
-
       const container =
         document.getElementById("spline-container");
-
       // Remove previous scene
       container.innerHTML = "";
-
       // Create viewer
       const viewer =
         document.createElement("spline-viewer");
-
       viewer.setAttribute("url", sceneURL);
-
       viewer.setAttribute(
         "loading-anim-type",
         "spinner-small-dark"
       );
-
       container.appendChild(viewer);
     }
-
     function checkDevice() {
-
       const text =
         document.getElementById("device-text");
-
       // MOBILE VIEW
       if (window.innerWidth <= MOBILE_WIDTH) {
-
-       
-
         loadScene(
           "https://prod.spline.design/5LlEcRIaHmoA89oI/scene.splinecode"
         );
@@ -941,30 +937,39 @@ spline-viewer {
 
       // DESKTOP VIEW
       else {
-
-       
-
         loadScene(
           "https://prod.spline.design/VIC2YvWi58F4G5fa/scene.splinecode"
         );
       }
     }
-
     // Initial check
     checkDevice();
-
     // Recheck on resize
     window.addEventListener("resize", checkDevice);
   </script>
 
 
-
-
-
 <!-- UI OVERLAY -->
 <div id="ui">
-  <div id="bottomBox">Website Made by Aman Dsouza</div>
-  
+<style>
+  #bottomBox {
+    position: fixed;
+  z-index: 999999;
+    bottom: 20px;
+    left: 90%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1rem;
+    background: rgba(0,0,0,0.5);
+    padding: 10px 20px;
+    border-radius: 10px;
+background: #000000;  }
+</style>
+
+
+<div id="bottomBox">
+  Robix CRCE 2026
+</div>  
   <div id="sideMenu">
     <img src="RobixLogo-removebg-preview (1).png" alt="ROBIX Logo" style="width:100%;margin-bottom:20px;" height="250px"/>
     <div class="menuItem" data-page="about">ABOUT US</div>
@@ -985,42 +990,90 @@ menuToggle.onclick=()=>sideMenu.classList.toggle("open");
 document.querySelectorAll(".menuItem").forEach(item=>{
   item.onclick=()=>{sideMenu.classList.remove("open");showContent(item.dataset.page);};
 });
-document.getElementById("closeContent").onclick=()=>content.style.display="none";
-function showContent(page){
-  const data={about:"<h3>About Us</h3><p>ROBIX is a futuristic robotics and innovation collective.</p>",
-    events:"<h3>Events</h3><p>Hackathons, tech talks, live builds.</p>",
-    competitions:"<h3>Competitions</h3><p>National &amp; international robotics challenges.</p>",
-    social:"<h3>Social Media</h3><p>Instagram · LinkedIn · GitHub</p>",
-    projects:"<h3>Projects</h3><p>Autonomous bots, AI vision, IoT systems.</p>"};
-  contentBody.innerHTML=data[page];content.style.display="block";
-}
 </script>
 
 <div id="spacer" style="height:100vh;width:100%;pointer-events:none;"></div>
 
-<!-- ═══════════════════ ABOUT ═══════════════════ -->
-<section id="about" class="about-scroll-section chapter-section">
-  <div class="about-shell">
-    <div class="about-pin">
-      <div class="about-center">
-        <p class="about-kicker">ABOUT US</p>
-        <h2 class="about-title">We build</h2>
-        <div id="aboutActiveWord" class="about-active">platforms.</div>
-        <div class="about-line"></div>
+
+
+<section id="about" class="about-scroll-section">
+  <div class="about-pin">
+    <div class="about-center">
+      <p class="about-kicker">
+        ABOUT US
+      </p><h2 class="about-title">
+        We build
+      </h2>
+      <div id="aboutActiveWord" class="about-active">
+        platforms.
       </div>
-      <ul class="about-word-list" aria-hidden="true">
-        <li>platforms.</li>
-        <li>web applications.</li>
-        <li>interfaces.</li>
-        <li>design systems.</li>
-        <li>API platforms.</li>
-        <li>backend systems.</li>
-        <li>automation workflows.</li>
-        <li>technical foundations.</li>
-      </ul>
     </div>
   </div>
 </section>
+
+<!-- ═══════════════════ ABOUT ═══════════════════ -->
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const words = [
+  "platforms.",
+  "web applications.",
+  "interfaces.",
+  "design systems.",
+  "API platforms.",
+  "backend systems.",
+  "automation workflows.",
+  "technical foundations."
+];
+
+const activeWord =
+  document.getElementById("aboutActiveWord");
+let currentIndex = 0;
+// PIN + SMOOTH SCROLL
+ScrollTrigger.create({
+  trigger: ".about-scroll-section",
+  start: "top top",
+  end: "+=3000",
+  scrub: 1,
+  pin: ".about-pin",
+  anticipatePin: 1
+});
+
+// WORD CHANGING
+gsap.to({}, {
+  scrollTrigger: {
+    trigger: ".about-scroll-section",
+    start: "top top",
+    end: "+=3000",
+    scrub: 1,
+    onUpdate: (self) => {
+      const index = Math.min(
+        words.length - 1,
+        Math.floor(self.progress * words.length)
+      );
+
+      if (index !== currentIndex) {
+        currentIndex = index;
+        gsap.to(activeWord, {
+          opacity: 0,
+          y: 20,
+          duration: 0.2,
+          onComplete: () => {
+            activeWord.textContent =
+              words[currentIndex];
+            gsap.to(activeWord, {
+              opacity: 1,
+              y: 0,
+              duration: 0.2
+            });
+          }
+        });
+      }
+    }
+  }
+});
+</script>
+
 
 <!-- ═══════════════════ TEAM ═══════════════════ -->
 <section id="members" class="chapter-section">
@@ -1036,6 +1089,7 @@ function showContent(page){
   <div class="tier-label recruits gs-reveal"><span class="tier-label-text">◉ FE Recruits</span><span class="tier-label-line"></span></div>
   <div class="members-grid" id="membersGrid"></div>
 </section>
+
 
 <!-- ═══════════════════ EVENTS ═══════════════════ -->
 <section id="events" class="chapter-section" style="background:#05070a; overflow:hidden; padding-bottom:80px;">
@@ -1109,6 +1163,7 @@ function showContent(page){
   layout(); startAuto();
 })();
 </script>
+
 
 <!-- ═══════════════════ COMPETITIONS ═══════════════════ -->
 <section id="competitions">
@@ -1284,6 +1339,7 @@ function showContent(page){
   </div>
 </section>
 
+
 <!-- ═══════════════════ GALLERY — 3D BOOK ═══════════════════ -->
 <section id="gallery" class="chapter-section" style="padding:0;">
   <div class="scene">
@@ -1317,6 +1373,7 @@ function showContent(page){
   </div>
 </section>
 
+
 <!-- ═══════════════════ CONTACT ═══════════════════ -->
 <section id="contact" class="chapter-section">
   <h2 class="section-title">Contact</h2>
@@ -1330,6 +1387,7 @@ function showContent(page){
     </form>
   </div>
 </section>
+
 
 <!-- ═══════════════════ TEAM DATA JS ═══════════════════ -->
 <script>
@@ -1385,6 +1443,7 @@ const recruitData=[
 document.getElementById('membersGrid').innerHTML='';
 recruitData.forEach((m,i)=>document.getElementById('membersGrid').appendChild(buildCard(m,'recruit',i)));
 </script>
+
 
 <!-- ═══════════════════ COMPETITIONS JS ═══════════════════ -->
 <script>
@@ -1456,6 +1515,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
 <!-- ═══════════════════ GSAP SCROLL + ABOUT WORD ANIMATION ═══════════════════ -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -1507,6 +1567,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+
   // ── ABOUT WORD ANIMATION ────────────────────────────────────────────────
   const aboutSection  = document.querySelector("#about");
   const words         = gsap.utils.toArray(".about-word-list li");
@@ -1554,6 +1615,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+
 <!-- ═══════════════════ GALLERY BOOK JS ═══════════════════ -->
 <script>
 (function(){
@@ -1579,10 +1641,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 })();
 </script>
-
 </body>
 </html>
-
 </body>
-
 </html>
