@@ -32,12 +32,18 @@
       inset: 0;
       width: 100%;
       height: 100vh;
+        touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
     }
 
     spline-viewer {
       width: 100%;
       height: 100%;
       display: block;
+     
+
     }
   </style>
 </head>
@@ -351,6 +357,24 @@ spline-viewer {
 }
 .members-grid.senior-grid { grid-template-columns:repeat(auto-fill,minmax(170px,1fr));justify-content: center; }
  
+
+@media (max-width: 768px) {
+
+  .members-grid {
+    grid-template-columns: repeat(1, 200px) !important;
+    justify-content: center !important;
+    gap: 20px !important;
+  }
+
+  .members-grid > * {
+    width: 200px !important;
+    min-width: 200px !important;
+    max-width: 200px !important;
+  }
+
+}
+
+
 /* comet cards */
 .comet-card {
   position:relative; border-radius:20px; padding:2px; background:transparent;
@@ -1792,31 +1816,54 @@ function setActiveNav(id) {
 <style>
 @media (max-width: 900px) {
 
-  /* MAIN GRID → STACK VERTICALLY */
+  /* MAIN GRID → STACK */
   .contact-footer-grid{
     display:flex !important;
     flex-direction:column !important;
     gap:50px !important;
     padding:40px 22px !important;
+    align-items:center !important;
+    text-align:center !important;
   }
 
-  /* REMOVE VERTICAL DIVIDERS */
+  /* REMOVE DIVIDERS */
   .contact-footer-grid > div[style*="width:1px"]{
     display:none !important;
   }
 
-  /* REMOVE SIDE PADDING */
+  /* RESET COLUMN PADDING */
   .contact-footer-grid > div{
     padding-left:0 !important;
     padding-right:0 !important;
+    width:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    text-align:center !important;
   }
 
-  /* CENTER LOGO + SOCIALS */
+  /* LOGO */
   .contact-footer-grid img{
     max-width:220px !important;
   }
 
-  /* STACK YEAR + STREAM */
+  /* SOCIALS CENTER */
+  .contact-footer-grid div[style*="gap:14px"]{
+    justify-content:center !important;
+  }
+
+  /* LOCATION TITLE + CONTACT TITLE */
+  .contact-footer-grid p{
+    text-align:center !important;
+    justify-content:center !important;
+  }
+
+  /* FORM */
+  #robix-contact-form{
+    width:100% !important;
+  }
+
+  /* YEAR + STREAM STACK */
   .contact-footer-grid form > div[style*="display:flex; gap:14px"]{
     flex-direction:column !important;
   }
@@ -1824,14 +1871,16 @@ function setActiveNav(id) {
   /* FOOTER STRIP */
   #contact > div:last-child{
     flex-direction:column !important;
-    text-align:center;
+    text-align:center !important;
     padding:20px !important;
+    align-items:center !important;
   }
 
   /* TITLE */
   #contact .section-title{
     font-size:34px !important;
-    margin-top:40px;
+    margin-top:40px !important;
+    text-align:center !important;
   }
 
 }
