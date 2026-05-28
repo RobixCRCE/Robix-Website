@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+  <link rel="icon" type="image/png" href="RobixLogo-removebg-preview (1).png">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -276,7 +277,7 @@ spline-viewer {
   position:relative; z-index:20; pointer-events:auto;
 }
 .section-title {
-  color:#fff; font-size:48px; margin-bottom:50px;
+  color:#fff; font-size:40px; margin-bottom:50px;
   text-transform:uppercase; letter-spacing:4px; position:relative; text-align:center;
   
 }
@@ -341,19 +342,20 @@ spline-viewer {
 .tier-label.recruits .tier-label-line { background:linear-gradient(to right,#ff444444,transparent); }
 .tier-spacer { height:40px; width:100%; }
 .members-grid {
-  display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:28px; max-width:1200px; width:100%; margin:0 auto;
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr));
+  gap:48px; max-width:1200px; width:100%; margin:0 auto;
+  flex-wrap: wrap; align-items: center;
 }
 .members-grid.founder-grid {
   display:flex; justify-content:center; max-width:1200px; width:100%; margin:0 auto;
 }
-.members-grid.senior-grid { grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); }
+.members-grid.senior-grid { grid-template-columns:repeat(auto-fill,minmax(170px,1fr));justify-content: center; }
  
 /* comet cards */
 .comet-card {
   position:relative; border-radius:20px; padding:2px; background:transparent;
   cursor:pointer; transform-style:preserve-3d; transition:transform 0.15s ease,box-shadow 0.3s ease;
-  will-change:transform;
+  will-change:transform; 
 }
 @property --comet-angle { syntax:'<angle>'; initial-value:0deg; inherits:false; }
 @keyframes comet-spin { to { --comet-angle:360deg; } }
@@ -875,6 +877,91 @@ spline-viewer {
   z-index: 1;
 }
 
+
+@media (max-width: 768px) {
+
+  .co-stage {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 20px !important;
+    height: auto !important;
+    min-height: unset !important;
+    padding: 30px 20px 60px !important;
+  }
+
+  .co-stage__left,
+  .co-stage__right {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: unset !important;
+  }
+
+  .co-stage__right {
+    display: block !important;
+    overflow: visible !important;
+  }
+
+  .co-info-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+  }
+
+  .co-info__desc {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    font-size: 14px !important;
+    line-height: 1.7 !important;
+    text-align: center !important;
+  }
+
+  .co-info__specs {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    margin-top: 20px !important;
+  }
+
+  .co-robot-wrap {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+
+  .co-robot-img {
+    width: 85% !important;
+    max-width: 280px !important;
+    height: auto !important;
+    object-fit: contain !important;
+  }
+
+  .swiper,
+  .swiper-wrapper,
+  .swiper-slide {
+    height: auto !important;
+    overflow: visible !important;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .co-progress-track,
+  .co-counter,
+  .co-dots,
+   .co-nav-row,
+   .co-nav-btn
+    {
+    display: none !important;
+  }
+}
+
+
+
 /*THIS IS THE END OF ALL DAT CSS BS BUT THERES MORE ACTUALLY LATER*/
 
 
@@ -882,6 +969,37 @@ spline-viewer {
 </head>
 
 <body>
+
+
+<style>
+  #bottomBox {
+    position: fixed;
+
+    bottom: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 9999;
+
+    color: white;
+    font-size: 1rem;
+
+    background: rgba(0,0,0,0.5);
+
+    padding: 5px 20px;
+
+    border-radius: 10px;
+
+    backdrop-filter: blur(5px);
+  }
+</style>
+
+<div id="bottomBox">
+  Robix FRCRCE
+</div>
+
+
 
 <!-- LOADING -->
 <div id="loading-screen">
@@ -1178,7 +1296,7 @@ gsap.to({}, {
 <section id="competitions">
   <div class="co-bg-blob" id="coBgBlob"></div>
   <h2 class="section-title gs-reveal" style="position:relative;z-index:2;">Competition Robots</h2>
-  <p class="section-subtitle gs-reveal" style="position:relative;z-index:2;">ROBIX CRCE · Battle-Tested Machines</p>
+  <p class="section-subtitle gs-reveal" style="position:relative;z-index:2;">Our Battle-Tested Machines</p>
 
   <div class="co-swiper-outer gs-reveal">
     <div class="swiper co-carousel">
@@ -1671,6 +1789,57 @@ function setActiveNav(id) {
 
 </section>
 
+<style>
+@media (max-width: 900px) {
+
+  /* MAIN GRID → STACK VERTICALLY */
+  .contact-footer-grid{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:50px !important;
+    padding:40px 22px !important;
+  }
+
+  /* REMOVE VERTICAL DIVIDERS */
+  .contact-footer-grid > div[style*="width:1px"]{
+    display:none !important;
+  }
+
+  /* REMOVE SIDE PADDING */
+  .contact-footer-grid > div{
+    padding-left:0 !important;
+    padding-right:0 !important;
+  }
+
+  /* CENTER LOGO + SOCIALS */
+  .contact-footer-grid img{
+    max-width:220px !important;
+  }
+
+  /* STACK YEAR + STREAM */
+  .contact-footer-grid form > div[style*="display:flex; gap:14px"]{
+    flex-direction:column !important;
+  }
+
+  /* FOOTER STRIP */
+  #contact > div:last-child{
+    flex-direction:column !important;
+    text-align:center;
+    padding:20px !important;
+  }
+
+  /* TITLE */
+  #contact .section-title{
+    font-size:34px !important;
+    margin-top:40px;
+  }
+
+}
+</style>
+
+
+
+
 
 
 
@@ -1705,8 +1874,8 @@ const founderData=[{name:"Aman Dsouza",role:"Founder",tag:"#F00",linkedin:"https
 document.getElementById('founderGrid').appendChild(buildCard(founderData[0],'founder',0));
 const seniorData=[
   {name:"Caleb Lewis",role:"Club Advisor",tag:"#SC01",linkedin:"https://www.linkedin.com/in/CalebLewis14",github:"https://github.com/CalebLewis14",email:"professional.caleb14@gmail.com"},
-  {name:"Naimish Purohit",role:"Club Advisor",tag:"#SC02",github:"https://github.com/NaimishWinner45",email:""},
-  {name:"Sherwin Mascarenhas",role:"Senior Council",tag:"#SC03",email:"1206sherwin@gmail.com"},
+  {name:"Naimish Purohit",role:"Club Advisor",tag:"#SC02",linkedin: "https://www.linkedin.com/in/naimish-purohit-4545emp?utm_source=share_via&utm_content=profile&utm_medium=member_android", github:"https://github.com/NaimishWinner45",email:"crce.10396.ecs@gmail.com"},
+  {name:"Sherwin Mascarenhas",role:"Senior Council",tag:"#SC03",linkedin:"https://www.linkedin.com/in/sherwin-mascarenhas-b398a3353?utm_source=share_via&utm_content=profile&utm_medium=member_ios", email:"1206sherwin@gmail.com"},
   {name:"Reeven Menezes",role:"Senior Council",tag:"#SC04",linkedin:"https://www.linkedin.com/in/reeven-menezes-22b617352",github:"https://github.com/Reeven10",email:"reevenmenezes@gmail.com"},
   {name:"Vedanth Pilankar",role:"Senior Council",tag:"#SC05",linkedin:"https://www.linkedin.com/in/vedanth-pilankar-a28b97268",email:"Vedanthp2021@gmail.com"},
   {name:"Soham More",role:"Senior Council",tag:"#SC06",linkedin:"https://www.linkedin.com/in/soham-more-695000335",github:"https://github.com/sohammore86-art",email:"sohammore86@gmail.com"},
