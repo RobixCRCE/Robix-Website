@@ -3201,21 +3201,22 @@
         const seniorData = [
           { name: "Caleb Lewis", role: "Club Advisor", tag: "#SC01", linkedin: "https://www.linkedin.com/in/CalebLewis14", github: "https://github.com/CalebLewis14", email: "professional.caleb14@gmail.com" },
           { name: "Naimish Purohit", role: "Club Advisor", tag: "#SC02", linkedin: "https://www.linkedin.com/in/naimish-purohit-4545emp?utm_source=share_via&utm_content=profile&utm_medium=member_android", github: "https://github.com/NaimishWinner45", email: "crce.10396.ecs@gmail.com" },
-          { name: "Sherwin Mascarenhas", role: "Senior Council", tag: "#SC03", linkedin: "https://www.linkedin.com/in/sherwin-mascarenhas-b398a3353?utm_source=share_via&utm_content=profile&utm_medium=member_ios", email: "1206sherwin@gmail.com" },
           { name: "Reeven Menezes", role: "Senior Council", tag: "#SC04", linkedin: "https://www.linkedin.com/in/reeven-menezes-22b617352", github: "https://github.com/Reeven10", email: "reevenmenezes@gmail.com" },
-          { name: "Vedanth Pilankar", role: "Senior Council", tag: "#SC05", linkedin: "https://www.linkedin.com/in/vedanth-pilankar-a28b97268", email: "Vedanthp2021@gmail.com" },
-          { name: "Soham More", role: "Senior Council", tag: "#SC06", linkedin: "https://www.linkedin.com/in/soham-more-695000335", github: "https://github.com/sohammore86-art", email: "sohammore86@gmail.com" },
-          { name: "Julius Sequeira", role: "Senior Council", tag: "#SC07", linkedin: "https://www.linkedin.com/in/juliussequeira", github: "https://github.com/juliussequeira09-commits", email: "juliussequeira09@gmail.com" },
+          { name: "Vedanth Pilankar", role: "Mechanical Lead", tag: "#SC05", linkedin: "https://www.linkedin.com/in/vedanth-pilankar-a28b97268", email: "Vedanthp2021@gmail.com" },
+          { name: "Soham More", role: "Electronics Co-Lead", tag: "#SC06", linkedin: "https://www.linkedin.com/in/soham-more-695000335", github: "https://github.com/sohammore86-art", email: "sohammore86@gmail.com" },
+          { name: "Julius Sequeira", role: "Electronics Lead", tag: "#SC07", linkedin: "https://www.linkedin.com/in/juliussequeira", github: "https://github.com/juliussequeira09-commits", email: "juliussequeira09@gmail.com" },
           { name: "Hansy Rodrigues", role: "Senior Council", tag: "#SC08", linkedin: "https://www.linkedin.com/in/hansy-rodrigues-933a6b35b/", github: "https://github.com/Hen-t55", email: "rodrigueshansy9@gmail.com" },
-          { name: "Bhushan Ladgaonkar", role: "Senior Council", tag: "#SC09", linkedin: "https://www.linkedin.com/in/bhushan-ladgaonkar", github: "https://github.com/beeth73", email: "bhushanladgaonkar@gmail.com" }
+          { name: "Bhushan Ladgaonkar", role: "Documentation and Media Co-Lead", tag: "#SC09", linkedin: "https://www.linkedin.com/in/bhushan-ladgaonkar", github: "https://github.com/beeth73", email: "bhushanladgaonkar@gmail.com" },
+          { name: "Smith Pandit", role: "Documentation and Media Lead", tag: "#SC10", linkedin: "", github: "" }
+
         ];
         const advisorGrid = document.getElementById('advisorGrid'), seniorGrid = document.getElementById('seniorGrid');
         seniorData.forEach((m, i) => { (m.role === 'Club Advisor' ? advisorGrid : seniorGrid).appendChild(buildCard(m, 'senior', i)); });
         const recruitData = [
-          { name: "Yash Kiran Dhasal", role: "Recruit", tag: "#FE01", linkedin: "https://www.linkedin.com/in/yash-kiran-4579b124a", github: "https://github.com/YK1218", email: "fs22ai007yashkdhasal@gmail.com" },
-          { name: "Priyansh Savla", role: "Recruit", tag: "#FE02", linkedin: "https://www.linkedin.com/in/priyansh-savla-b5b856381", email: "priyanshsavla13@gmail.com" },
-          { name: "Nayaab Nathani", role: "Recruit", tag: "#FE03", linkedin: "https://www.linkedin.com/in/nayaab-nathani-1317612a2/", github: "https://github.com/nayaabnathani", email: "nayaab.nt@gmail.com" },
-          { name: "Reya Noronha", role: "Recruit", tag: "#FE07", linkedin: "https://www.linkedin.com/in/reyanor12", github: "https://github.com/reyanortech12-prog", email: "reyanor.tech12@gmail.com" },
+          { name: "Yash Kiran Dhasal", role: "Technical Lead", tag: "#FE01", linkedin: "https://www.linkedin.com/in/yash-kiran-4579b124a", github: "https://github.com/YK1218", email: "fs22ai007yashkdhasal@gmail.com" },
+          { name: "Priyansh Savla", role: "Documentation Member", tag: "#FE02", linkedin: "https://www.linkedin.com/in/priyansh-savla-b5b856381", email: "priyanshsavla13@gmail.com" },
+          { name: "Nayaab Nathani", role: "Mechanical Co-Lead", tag: "#FE03", linkedin: "https://www.linkedin.com/in/nayaab-nathani-1317612a2/", github: "https://github.com/nayaabnathani", email: "nayaab.nt@gmail.com" },
+          { name: "Reya Noronha", role: "Electronics Member", tag: "#FE07", linkedin: "https://www.linkedin.com/in/reyanor12", github: "https://github.com/reyanortech12-prog", email: "reyanor.tech12@gmail.com" },
         ];
         document.getElementById('membersGrid').innerHTML = '';
         recruitData.forEach((m, i) => document.getElementById('membersGrid').appendChild(buildCard(m, 'recruit', i)));
