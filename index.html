@@ -1196,6 +1196,403 @@
         transform: translateY(-2px);
       }
 
+      /* ==============================================
+         TEAM - TIER LABELS (LEADS & MEMBERS)
+      ============================================== */
+      .tier-label.leads .tier-label-text {
+        color: #ff4444;
+        text-shadow: 0 0 12px rgba(255, 68, 68, 0.7);
+      }
+
+      .tier-label.leads .tier-label-line {
+        background: linear-gradient(to right, #ff444466, transparent);
+      }
+
+      .tier-label.members .tier-label-text,
+      .tier-label.departments .tier-label-text {
+        color: #ffffff;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      }
+
+      .tier-label.members .tier-label-line,
+      .tier-label.departments .tier-label-line {
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.3), transparent);
+      }
+
+      /* ==============================================
+         TEAM - LEADERSHIP OVERVIEW (LEADS & CO-LEADS)
+      ============================================== */
+      .leadership-grid-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 28px;
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .leadership-dept-group {
+        background: rgba(12, 15, 20, 0.7);
+        border: 1px solid rgba(255, 68, 68, 0.18);
+        border-radius: 20px;
+        padding: 22px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        backdrop-filter: blur(10px);
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .leadership-dept-group:hover {
+        border-color: rgba(255, 68, 68, 0.4);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 18px rgba(255, 68, 68, 0.1);
+      }
+
+      .leadership-dept-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 11px;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: #ff5555;
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        text-shadow: 0 0 10px rgba(255, 68, 68, 0.4);
+      }
+
+      .leadership-dept-icon {
+        font-size: 9px;
+        color: #ff4444;
+      }
+
+      .leadership-dept-cards {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      /* ==============================================
+         TEAM - CARD VARIANTS: LEAD & CO-LEAD
+         (Both Leads & Co-Leads feature glowing boxes)
+      ============================================== */
+      .comet-card.v-lead,
+      .comet-card.v-co-lead {
+        width: 200px;
+        max-width: 200px;
+        flex: 0 0 200px;
+      }
+
+      .comet-card.v-lead::before,
+      .comet-card.v-co-lead::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        padding: 2px;
+        background: conic-gradient(from var(--comet-angle, 0deg), transparent 0deg, transparent 55deg, #ff2222 75deg, #ff6666 90deg, #ffffff 95deg, #ff2222 105deg, transparent 125deg, transparent 360deg);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: comet-spin 3s linear infinite;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .comet-card.v-lead:hover::before,
+      .comet-card.v-co-lead:hover::before {
+        opacity: 1;
+      }
+
+      .comet-card.v-lead::after,
+      .comet-card.v-co-lead::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 20px;
+        background: radial-gradient(circle 120px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 40, 40, 0.18) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        pointer-events: none;
+      }
+
+      .comet-card.v-lead:hover::after,
+      .comet-card.v-co-lead:hover::after {
+        opacity: 1;
+      }
+
+      .comet-card.v-lead .comet-inner,
+      .comet-card.v-co-lead .comet-inner {
+        background: #0f1114;
+        border: 1px solid rgba(255, 68, 68, 0.35);
+        box-shadow: 0 0 15px rgba(255, 68, 68, 0.08);
+      }
+
+      .comet-card.v-lead:hover .comet-inner,
+      .comet-card.v-co-lead:hover .comet-inner {
+        border-color: #ff4444;
+        box-shadow: 0 0 20px rgba(255, 68, 68, 0.25);
+      }
+
+      .comet-card.v-lead .comet-avatar-fallback,
+      .comet-card.v-co-lead .comet-avatar-fallback {
+        background: linear-gradient(135deg, #220808, #360c0c);
+        color: #ff5555;
+      }
+
+      .comet-card.v-lead .comet-role-badge,
+      .comet-card.v-co-lead .comet-role-badge {
+        background: rgba(255, 68, 68, 0.14);
+        border: 1px solid #ff4444;
+        color: #ff5555;
+        box-shadow: 0 0 10px rgba(255, 68, 68, 0.35);
+        font-weight: 700;
+      }
+
+      .comet-card.v-lead .comet-tag,
+      .comet-card.v-co-lead .comet-tag {
+        color: rgba(255, 120, 120, 0.6);
+      }
+
+      .comet-card.v-lead .comet-bar,
+      .comet-card.v-co-lead .comet-bar {
+        background: #ff4444;
+        box-shadow: 0 0 14px #ff4444;
+      }
+
+      .comet-card.v-lead .comet-social-btn,
+      .comet-card.v-co-lead .comet-social-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      .comet-card.v-lead .comet-social-btn:hover,
+      .comet-card.v-co-lead .comet-social-btn:hover {
+        background: rgba(255, 68, 68, 0.2);
+        border-color: #ff4444;
+        color: #ff4444;
+        box-shadow: 0 0 10px rgba(255, 68, 68, 0.4);
+        transform: translateY(-2px);
+      }
+
+      /* ==============================================
+         TEAM - MEMBERS & COMPACT CARDS
+      ============================================== */
+      .departments-wrapper {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .dept-section {
+        width: 100%;
+        background: rgba(9, 12, 16, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 20px;
+        padding: 26px 26px 28px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+      }
+
+      .dept-section:hover {
+        border-color: rgba(255, 68, 68, 0.25);
+      }
+
+      .dept-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .dept-header-left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .dept-header-diamond {
+        color: #ff4444;
+        font-size: 11px;
+      }
+
+      .dept-header-title {
+        font-family: 'Orbitron', sans-serif;
+        font-size: 13px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #ffffff;
+        margin: 0;
+        white-space: nowrap;
+      }
+
+      .dept-header-badge {
+        font-family: monospace;
+        font-size: 10px;
+        letter-spacing: 1px;
+        color: rgba(255, 80, 80, 0.85);
+        background: rgba(255, 68, 68, 0.08);
+        border: 1px solid rgba(255, 68, 68, 0.25);
+        padding: 3px 9px;
+        border-radius: 12px;
+        white-space: nowrap;
+      }
+
+      .dept-header-line {
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, rgba(255, 68, 68, 0.3), rgba(255, 68, 68, 0.05) 75%, transparent);
+      }
+
+      .dept-cards-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 28px;
+        justify-content: flex-start;
+        width: 100%;
+      }
+
+      /* Compact Member Card Variant */
+      .comet-card.v-member {
+        width: 200px;
+        max-width: 200px;
+        flex: 0 0 200px;
+        border-radius: 16px;
+      }
+
+      .comet-card.v-member .comet-inner {
+        border-radius: 14px;
+        background: #0d0f13;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0 0 14px 0;
+        transition: border-color 0.3s ease;
+      }
+
+      .comet-card.v-member:hover .comet-inner {
+        border-color: rgba(255, 68, 68, 0.35);
+      }
+
+      .comet-card.v-member .comet-img-wrap {
+        height: 120px;
+        border-radius: 13px 13px 0 0;
+      }
+
+      .comet-card.v-member .comet-avatar-fallback {
+        font-size: 28px;
+        background: linear-gradient(135deg, #13161c, #1a1e27);
+        color: rgba(255, 255, 255, 0.35);
+      }
+
+      .comet-card.v-member .comet-role-badge {
+        top: 8px;
+        left: 8px;
+        font-size: 7.5px;
+        letter-spacing: 1.5px;
+        padding: 2px 7px;
+        border-radius: 3px;
+        background: rgba(0, 0, 0, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: rgba(255, 255, 255, 0.65);
+      }
+
+      .comet-card.v-member .comet-info {
+        padding: 12px 14px 2px;
+      }
+
+      .comet-card.v-member .comet-name {
+        font-size: 11.5px;
+      }
+
+      .comet-card.v-member .comet-tag {
+        font-size: 9.5px;
+        color: rgba(255, 255, 255, 0.3);
+      }
+
+      .comet-card.v-member .comet-socials {
+        padding: 6px 14px 0;
+        gap: 8px;
+      }
+
+      .comet-card.v-member .comet-social-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+        border-radius: 6px;
+      }
+
+      .comet-card.v-member .comet-social-btn svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .comet-card.v-member .comet-bar {
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 0 6px rgba(255, 255, 255, 0.1);
+      }
+
+      .comet-card.v-member:hover .comet-bar {
+        background: #ff4444;
+        box-shadow: 0 0 10px #ff4444;
+      }
+
+      /* Placeholder Card styling */
+      .comet-card.is-placeholder {
+        opacity: 0.75;
+      }
+
+      .comet-card.is-placeholder .comet-inner {
+        border-style: dashed;
+        border-color: rgba(255, 68, 68, 0.35);
+      }
+
+      .comet-card.is-placeholder .comet-avatar-fallback {
+        color: rgba(255, 68, 68, 0.3);
+      }
+
+      /* Responsive rules for leadership & members */
+      @media (max-width: 768px) {
+        .leadership-dept-group {
+          width: 100%;
+          max-width: 320px;
+        }
+
+        .leadership-dept-cards {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .dept-section {
+          padding: 20px 16px 22px;
+        }
+
+        .dept-cards-grid {
+          justify-content: center;
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .dept-header {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 8px;
+        }
+
+        .dept-header-line {
+          width: 100%;
+        }
+
+        .dept-cards-grid {
+          justify-content: center;
+        }
+      }
+
       /* ═══════════════════════════════════════════
    COMPETITIONS
 ═══════════════════════════════════════════ */
@@ -2410,22 +2807,37 @@
       <!-- ═══════════════════ TEAM ═══════════════════ -->
       <section id="members" class="chapter-section">
         <h2 class="section-title">The Team</h2>
-        <p class="section-subtitle">ROBIX CRCE · Leadership &amp; Members</p>
+        <p class="section-subtitle">ROBIX CRCE · Organizational Hierarchy</p>
+
+        <!-- Tier 1: Founder -->
         <div class="tier-label founder gs-reveal"><span class="tier-label-text">⬡ Founder</span><span
             class="tier-label-line"></span></div>
         <div class="members-grid founder-grid" id="founderGrid"
           style="display:flex;justify-content:center;max-width:1200px;width:100%;"></div>
         <div class="tier-spacer"></div>
-        <div class="tier-label senior gs-reveal"><span class="tier-label-text">◈ Senior Council</span><span
+
+        <!-- Tier 2: Advisors -->
+        <div class="tier-label senior gs-reveal"><span class="tier-label-text">◈ Advisors</span><span
             class="tier-label-line"></span></div>
         <div class="members-grid" id="advisorGrid"
-          style="display:flex;justify-content:center;gap:28px;max-width:1200px;width:100%;flex-wrap:wrap;margin-bottom:28px;">
+          style="display:flex;justify-content:center;gap:28px;max-width:1200px;width:100%;flex-wrap:wrap;">
         </div>
-        <div class="members-grid senior-grid" id="seniorGrid"></div>
         <div class="tier-spacer"></div>
-        <div class="tier-label recruits gs-reveal"><span class="tier-label-text">◉ FE Recruits</span><span
-            class="tier-label-line"></span></div>
-        <div class="members-grid" id="membersGrid"></div>
+
+        <!-- Tier 3: Leads & Co-Leads -->
+        <div class="tier-label leads gs-reveal">
+          <span class="tier-label-text">◆ Leads &amp; Co-Leads</span>
+          <span class="tier-label-line"></span>
+        </div>
+        <div id="leadershipContainer" class="leadership-grid-container"></div>
+        <div class="tier-spacer"></div>
+
+        <!-- Tier 4: Members -->
+        <div class="tier-label members gs-reveal">
+          <span class="tier-label-text">◇ Members</span>
+          <span class="tier-label-line"></span>
+        </div>
+        <div id="departmentsContainer" class="departments-wrapper"></div>
       </section>
 
 
@@ -3177,16 +3589,259 @@
           github: `<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>`,
           email: `<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`
         };
+
+        const departments = [
+          { id: 'technical', name: 'Technical' },
+          { id: 'mechanical', name: 'Mechanical' },
+          { id: 'electronics', name: 'Electronics' },
+          { id: 'events-media', name: 'Event Coordination and Media and Docs' }
+        ];
+
+        /* Single Source of Truth for Team Data */
+        const teamMembers = [
+          // ─── FOUNDER ───
+          {
+            name: "Aman Dsouza",
+            role: "founder",
+            roleTitle: "Founder",
+            department: null,
+            tag: "#F00",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/aman-dsouza-612366362",
+            github: "https://github.com/helloitsaman",
+            email: "amandsouza41@gmail.com"
+          },
+
+          // ─── ADVISORS ───
+          {
+            name: "Caleb Lewis",
+            role: "advisor",
+            roleTitle: "Club Advisor",
+            department: null,
+            tag: "#SC01",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/CalebLewis14",
+            github: "https://github.com/CalebLewis14",
+            email: "professional.caleb14@gmail.com"
+          },
+          {
+            name: "Naimish Purohit",
+            role: "advisor",
+            roleTitle: "Club Advisor",
+            department: null,
+            tag: "#SC02",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/naimish-purohit-4545emp?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+            github: "https://github.com/NaimishWinner45",
+            email: "crce.10396.ecs@gmail.com"
+          },
+
+          // ─── TECHNICAL ───
+          {
+            name: "Yash Kiran Dhasal",
+            role: "lead",
+            roleTitle: "Technical Lead",
+            department: "technical",
+            tag: "#FE01",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/yash-kiran-4579b124a",
+            github: "https://github.com/YK1218",
+            email: "fs22ai007yashkdhasal@gmail.com"
+          },
+          {
+            name: "Reeven Menezes",
+            role: "member",
+            roleTitle: "Technical Member",
+            department: "technical",
+            tag: "#SC04",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/reeven-menezes-22b617352",
+            github: "https://github.com/Reeven10",
+            email: "reevenmenezes@gmail.com"
+          },
+          {
+            name: "Hansy Rodrigues",
+            role: "member",
+            roleTitle: "Technical Member",
+            department: "technical",
+            tag: "#SC08",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/hansy-rodrigues-933a6b35b/",
+            github: "https://github.com/Hen-t55",
+            email: "rodrigueshansy9@gmail.com"
+          },
+
+          // ─── MECHANICAL ───
+          {
+            name: "Vedanth Pilankar",
+            role: "lead",
+            roleTitle: "Mechanical Lead",
+            department: "mechanical",
+            tag: "#SC05",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/vedanth-pilankar-a28b97268",
+            github: "",
+            email: "Vedanthp2021@gmail.com"
+          },
+          {
+            name: "Nayaab Nathani",
+            role: "co-lead",
+            roleTitle: "Mechanical Co-Lead",
+            department: "mechanical",
+            tag: "#FE03",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/nayaab-nathani-1317612a2/",
+            github: "https://github.com/nayaabnathani",
+            email: "nayaab.nt@gmail.com"
+          },
+
+          // ─── ELECTRONICS ───
+          {
+            name: "Julius Sequeira",
+            role: "lead",
+            roleTitle: "Electronics Lead",
+            department: "electronics",
+            tag: "#SC07",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/juliussequeira",
+            github: "https://github.com/juliussequeira09-commits",
+            email: "juliussequeira09@gmail.com"
+          },
+          {
+            name: "Soham More",
+            role: "co-lead",
+            roleTitle: "Electronics Co-Lead",
+            department: "electronics",
+            tag: "#SC06",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/soham-more-695000335",
+            github: "https://github.com/sohammore86-art",
+            email: "sohammore86@gmail.com"
+          },
+          {
+            name: "Arnav Patade",
+            role: "member",
+            roleTitle: "Electronics Member",
+            department: "electronics",
+            tag: "#SC12",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/arnav-patade-342431344",
+            github: "https://github.com/0-pyro",
+            email: "apatade76@gmail.com"
+          },
+          {
+            name: "Ishaan Ram",
+            role: "member",
+            roleTitle: "Electronics Member",
+            department: "electronics",
+            tag: "#SC13",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/ishaan-ram-808373379",
+            github: "https://github.com/Ishaan2008-op",
+            email: "ishaanram15@gmail.com"
+          },
+          {
+            name: "Reya Noronha",
+            role: "member",
+            roleTitle: "Electronics Member",
+            department: "electronics",
+            tag: "#FE07",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/reyanor12",
+            github: "https://github.com/reyanortech12-prog",
+            email: "reyanor.tech12@gmail.com"
+          },
+
+          // ─── EVENT COORDINATION & MEDIA AND DOCUMENTATION ───
+          {
+            name: "Smith Pandit",
+            role: "lead",
+            roleTitle: "Events & Media and Docs Lead",
+            department: "events-media",
+            tag: "#SC10",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/smith-pandit-ba33b3330",
+            github: "https://github.com/Smith1929",
+            email: "smithpandit19@gmail.com"
+          },
+          {
+            name: "Bhushan Ladgaonkar",
+            role: "co-lead",
+            roleTitle: "Events & Media and Docs Co-Lead",
+            department: "events-media",
+            tag: "#SC09",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/bhushan-ladgaonkar",
+            github: "https://github.com/beeth73",
+            email: "bhushanladgaonkar@gmail.com"
+          },
+
+          {
+            name: "Priyansh Savla",
+            role: "member",
+            roleTitle: "Documentation Member",
+            department: "events-media",
+            tag: "#FE02",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/priyansh-savla-b5b856381",
+            github: "",
+            email: "priyanshsavla13@gmail.com"
+          },
+          {
+            name: "Nehal Patil",
+            role: "member",
+            roleTitle: "Documentation Member",
+            department: "events-media",
+            tag: "#SC11",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/nehal-patil-369855389/",
+            github: "https://github.com/nehal27-afk",
+            email: "nehalp2708@gmail.com"
+          },
+          {
+            name: "Sakshi Satralkar",
+            role: "member",
+            roleTitle: "Documentation Member",
+            department: "events-media",
+            tag: "#SC14",
+            image: "",
+            linkedin: "https://www.linkedin.com/in/sakshi-satralkar-572778341",
+            github: "https://github.com/ssakshi86-glitch",
+            email: "satralkarsakshi86@gmail.com"
+          }
+        ];
+
         function buildCard(m, variant, index) {
-          const initials = m.name.split(' ').map(w => w[0]).join('').slice(0, 2);
+          const isPlaceholder = !!m.isPlaceholder;
+          const initials = isPlaceholder ? 'TBD' : m.name.split(' ').map(w => w[0]).join('').slice(0, 2);
           let s = '';
           if (m.linkedin) s += `<a href="${m.linkedin}" target="_blank" rel="noopener" class="comet-social-btn" title="LinkedIn">${icons.linkedin}</a>`;
           if (m.github) s += `<a href="${m.github}" target="_blank" rel="noopener" class="comet-social-btn" title="GitHub">${icons.github}</a>`;
           if (m.email) s += `<a href="${m.email.startsWith('mailto') ? m.email : 'mailto:' + m.email}" class="comet-social-btn" title="Email">${icons.email}</a>`;
+
           const card = document.createElement('div');
-          card.className = `comet-card v-${variant} gs-reveal`;
-          card.style.animationDelay = `${index * 0.08}s`;
-          card.innerHTML = `<div class="comet-inner"><div class="comet-img-wrap"><div class="comet-avatar-fallback">${initials}</div></div><span class="comet-role-badge">${m.role}</span><div class="comet-info"><div class="comet-name">${m.name}</div><div class="comet-tag">${m.tag || ''}</div></div><div class="comet-socials">${s}</div><div class="comet-bar"></div></div>`;
+          card.className = `comet-card v-${variant} ${isPlaceholder ? 'is-placeholder' : ''} gs-reveal`;
+          card.style.animationDelay = `${(index || 0) * 0.06}s`;
+
+          const imgContent = m.image
+            ? `<img src="${m.image}" alt="${m.name}" loading="lazy">`
+            : `<div class="comet-avatar-fallback">${initials}</div>`;
+
+          const displayRole = m.roleTitle || (m.role ? m.role.toUpperCase() : '');
+
+          card.innerHTML = `
+            <div class="comet-inner">
+              <div class="comet-img-wrap">${imgContent}</div>
+              <span class="comet-role-badge">${displayRole}</span>
+              <div class="comet-info">
+                <div class="comet-name">${m.name}</div>
+                <div class="comet-tag">${m.tag || ''}</div>
+              </div>
+              <div class="comet-socials">${s}</div>
+              <div class="comet-bar"></div>
+            </div>
+          `;
+
           card.addEventListener('mousemove', e => {
             const r = card.getBoundingClientRect(), dx = e.clientX - r.left - r.width / 2, dy = e.clientY - r.top - r.height / 2;
             card.style.transform = `perspective(700px) rotateX(${-(dy / r.height) * 14}deg) rotateY(${(dx / r.width) * 14}deg) scale(1.03)`;
@@ -3196,33 +3851,108 @@
           card.addEventListener('mouseleave', () => { card.style.transform = ''; });
           return card;
         }
-        const founderData = [{ name: "Aman Dsouza", role: "Founder", tag: "#F00", linkedin: "https://www.linkedin.com/in/aman-dsouza-612366362", github: "https://github.com/helloitsaman", email: "amandsouza41@gmail.com" }];
-        document.getElementById('founderGrid').appendChild(buildCard(founderData[0], 'founder', 0));
-        const seniorData = [
-          { name: "Caleb Lewis", role: "Club Advisor", tag: "#SC01", linkedin: "https://www.linkedin.com/in/CalebLewis14", github: "https://github.com/CalebLewis14", email: "professional.caleb14@gmail.com" },
-          { name: "Naimish Purohit", role: "Club Advisor", tag: "#SC02", linkedin: "https://www.linkedin.com/in/naimish-purohit-4545emp?utm_source=share_via&utm_content=profile&utm_medium=member_android", github: "https://github.com/NaimishWinner45", email: "crce.10396.ecs@gmail.com" },
-          { name: "Reeven Menezes", role: "Senior Council", tag: "#SC04", linkedin: "https://www.linkedin.com/in/reeven-menezes-22b617352", github: "https://github.com/Reeven10", email: "reevenmenezes@gmail.com" },
-          { name: "Vedanth Pilankar", role: "Mechanical Lead", tag: "#SC05", linkedin: "https://www.linkedin.com/in/vedanth-pilankar-a28b97268", email: "Vedanthp2021@gmail.com" },
-          { name: "Soham More", role: "Electronics Co-Lead", tag: "#SC06", linkedin: "https://www.linkedin.com/in/soham-more-695000335", github: "https://github.com/sohammore86-art", email: "sohammore86@gmail.com" },
-          { name: "Julius Sequeira", role: "Electronics Lead", tag: "#SC07", linkedin: "https://www.linkedin.com/in/juliussequeira", github: "https://github.com/juliussequeira09-commits", email: "juliussequeira09@gmail.com" },
-          { name: "Hansy Rodrigues", role: "Senior Council", tag: "#SC08", linkedin: "https://www.linkedin.com/in/hansy-rodrigues-933a6b35b/", github: "https://github.com/Hen-t55", email: "rodrigueshansy9@gmail.com" },
-          { name: "Bhushan Ladgaonkar", role: "Media & Documentation Co-Lead", tag: "#SC09", linkedin: "https://www.linkedin.com/in/bhushan-ladgaonkar", github: "https://github.com/beeth73", email: "bhushanladgaonkar@gmail.com" },
-          { name: "Smith Pandit", role: "Event Coordinator and Media & Documentation Lead", tag: "#SC10", linkedin: "https://www.linkedin.com/in/smith-pandit-ba33b3330", github: "https://github.com/Smith1929", email: "smithpandit19@gmail.com" },
-          { name: "Nehal Patil", role: "Media & Documentation Member", tag: "#SC11", linkedin: "https://www.linkedin.com/in/nehal-patil-369855389/", github: "https://github.com/nehal27-afk", email: "nehalp2708@gmail.com" },
-          { name: "Arnav Patade", role: "Electronics Member", tag: "#SC12", linkedin: "https://www.linkedin.com/in/arnav-patade-342431344", github: "https://github.com/0-pyro", email: "apatade76@gmail.com" },
-          { name: "Ishaan Ram", role: "Electronics Member", tag: "#SC13", linkedin: "https://www.linkedin.com/in/ishaan-ram-808373379", github: "https://github.com/Ishaan2008-op", email: "ishaanram15@gmail.com" },
-          { name: "Sakshi Satralkar", role: "Media & Documentation Member", tag: "#SC14", linkedin: "https://www.linkedin.com/in/sakshi-satralkar-572778341", github: "https://github.com/ssakshi86-glitch", email: "satralkarsakshi86@gmail.com" }
-        ];
-        const advisorGrid = document.getElementById('advisorGrid'), seniorGrid = document.getElementById('seniorGrid');
-        seniorData.forEach((m, i) => { (m.role === 'Club Advisor' ? advisorGrid : seniorGrid).appendChild(buildCard(m, 'senior', i)); });
-        const recruitData = [
-          { name: "Yash Kiran Dhasal", role: "Technical Lead", tag: "#FE01", linkedin: "https://www.linkedin.com/in/yash-kiran-4579b124a", github: "https://github.com/YK1218", email: "fs22ai007yashkdhasal@gmail.com" },
-          { name: "Priyansh Savla", role: "Documentation Member", tag: "#FE02", linkedin: "https://www.linkedin.com/in/priyansh-savla-b5b856381", email: "priyanshsavla13@gmail.com" },
-          { name: "Nayaab Nathani", role: "Mechanical Co-Lead", tag: "#FE03", linkedin: "https://www.linkedin.com/in/nayaab-nathani-1317612a2/", github: "https://github.com/nayaabnathani", email: "nayaab.nt@gmail.com" },
-          { name: "Reya Noronha", role: "Electronics Member", tag: "#FE07", linkedin: "https://www.linkedin.com/in/reyanor12", github: "https://github.com/reyanortech12-prog", email: "reyanor.tech12@gmail.com" },
-        ];
-        document.getElementById('membersGrid').innerHTML = '';
-        recruitData.forEach((m, i) => document.getElementById('membersGrid').appendChild(buildCard(m, 'recruit', i)));
+
+        function renderFounder() {
+          const founderGrid = document.getElementById('founderGrid');
+          if (!founderGrid) return;
+          founderGrid.innerHTML = '';
+          const founder = teamMembers.find(m => m.role === 'founder');
+          if (founder) founderGrid.appendChild(buildCard(founder, 'founder', 0));
+        }
+
+        function renderAdvisors() {
+          const advisorGrid = document.getElementById('advisorGrid');
+          if (!advisorGrid) return;
+          advisorGrid.innerHTML = '';
+          const advisors = teamMembers.filter(m => m.role === 'advisor');
+          advisors.forEach((m, i) => advisorGrid.appendChild(buildCard(m, 'senior', i)));
+        }
+
+        function renderLeadership() {
+          const container = document.getElementById('leadershipContainer');
+          if (!container) return;
+          container.innerHTML = '';
+
+          let animIdx = 0;
+          departments.forEach(dept => {
+            const deptLeaders = teamMembers.filter(m => m.department === dept.id && (m.role === 'lead' || m.role === 'co-lead'));
+            if (!deptLeaders.length) return;
+
+            // Sort so 'lead' comes before 'co-lead'
+            deptLeaders.sort((a, b) => (a.role === 'lead' ? -1 : 1));
+
+            const group = document.createElement('div');
+            group.className = 'leadership-dept-group gs-reveal';
+
+            const title = document.createElement('div');
+            title.className = 'leadership-dept-title';
+            title.innerHTML = `<span class="leadership-dept-icon">◈</span> ${dept.name}`;
+            group.appendChild(title);
+
+            const cardsRow = document.createElement('div');
+            cardsRow.className = 'leadership-dept-cards';
+
+            deptLeaders.forEach(m => {
+              const variant = m.role === 'lead' ? 'lead' : 'co-lead';
+              cardsRow.appendChild(buildCard(m, variant, animIdx++));
+            });
+
+            group.appendChild(cardsRow);
+            container.appendChild(group);
+          });
+        }
+
+        function renderDepartments() {
+          const container = document.getElementById('departmentsContainer');
+          if (!container) return;
+          container.innerHTML = '';
+
+          let animIdx = 0;
+          departments.forEach(dept => {
+            const deptAll = teamMembers.filter(m => m.department === dept.id);
+            if (!deptAll.length) return;
+
+            // Sort: leads first, co-leads next, then members
+            deptAll.sort((a, b) => {
+              const order = { 'lead': 0, 'co-lead': 1, 'member': 2 };
+              return (order[a.role] ?? 3) - (order[b.role] ?? 3);
+            });
+
+            const sec = document.createElement('div');
+            sec.className = 'dept-section gs-reveal';
+
+            const header = document.createElement('div');
+            header.className = 'dept-header';
+            header.innerHTML = `
+              <div class="dept-header-left">
+                <span class="dept-header-diamond">◈</span>
+                <h3 class="dept-header-title">${dept.name}</h3>
+                <span class="dept-header-badge">${deptAll.length} ${deptAll.length === 1 ? 'Member' : 'Members'}</span>
+              </div>
+              <div class="dept-header-line"></div>
+            `;
+            sec.appendChild(header);
+
+            const grid = document.createElement('div');
+            grid.className = 'dept-cards-grid';
+
+            deptAll.forEach(m => {
+              let variant = 'member';
+              if (m.role === 'lead') variant = 'lead';
+              else if (m.role === 'co-lead') variant = 'co-lead';
+              grid.appendChild(buildCard(m, variant, animIdx++));
+            });
+
+            sec.appendChild(grid);
+            container.appendChild(sec);
+          });
+        }
+
+        // Render all team tiers
+        renderFounder();
+        renderAdvisors();
+        renderLeadership();
+        renderDepartments();
       </script>
 
 
