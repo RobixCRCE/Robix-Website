@@ -1,4 +1,354 @@
-/* About Section Styles */
-.about {
-  padding: 80px 20px;
+/* =========================================
+   ABOUT SYSTEM
+   ========================================= */
+
+.about-system {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 20;
+
+  display: grid;
+
+  grid-template-columns:
+    0.85fr 1.15fr;
+
+  align-items: center;
+
+  gap: 6vw;
+
+  padding:
+    clamp(80px, 9vh, 130px) clamp(28px, 7vw, 120px);
+
+  opacity: 0;
+
+  pointer-events: none;
+}
+
+
+/* =========================================
+   ABOUT HEADING
+   ========================================= */
+
+.about-heading {
+  max-width: 620px;
+}
+
+
+.about-kicker {
+  margin-bottom: 20px;
+
+  color: #ff3030;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 11px;
+
+  letter-spacing: 0.24em;
+}
+
+
+.about-heading h2 {
+  margin: 0;
+
+  font-size:
+    clamp(3.5rem,
+      7vw,
+      7.5rem);
+
+  line-height: 0.83;
+
+  letter-spacing: -0.065em;
+
+  text-transform: uppercase;
+}
+
+
+.about-heading p {
+  max-width: 500px;
+
+  margin-top: 28px;
+
+  color: #888;
+
+  line-height: 1.7;
+}
+
+
+
+/* =========================================
+   SYSTEM MAP
+   ========================================= */
+
+.system-map {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr 0.9fr 1fr;
+
+  grid-template-rows:
+    1fr 0.85fr 1fr;
+
+  gap: 14px;
+
+  width: 100%;
+
+  aspect-ratio: 1.15;
+}
+
+
+
+/* =========================================
+   DEPARTMENT PANELS
+   ========================================= */
+
+.department {
+  position: relative;
+
+  padding: 20px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.09);
+
+  background:
+
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.025),
+      transparent),
+
+    rgba(8, 8, 8, 0.86);
+
+  overflow: hidden;
+}
+
+
+.department::before {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  top: 0;
+
+  width: 3px;
+
+  height: 0;
+
+  background: #ff3030;
+
+  box-shadow:
+    0 0 12px rgba(255, 48, 48, 0.5);
+
+  height: 100%;
+
+  transform: scaleY(0);
+
+  transform-origin:
+    top;
+}
+
+
+.department-number {
+  color: #ff3030;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 0.2em;
+}
+
+
+.department h3 {
+  margin:
+    12px 0 8px;
+
+  font-size:
+    clamp(1rem,
+      1.4vw,
+      1.4rem);
+
+  line-height: 1;
+
+  letter-spacing: -0.03em;
+}
+
+
+.department p {
+  margin: 0;
+
+  color: #666;
+
+  font-size: 0.76rem;
+
+  line-height: 1.5;
+}
+
+
+
+/* =========================================
+   PANEL POSITIONS
+   ========================================= */
+
+.department-technical {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+
+.department-mechanical {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+
+.department-electronics {
+  grid-column: 1;
+  grid-row: 3;
+}
+
+
+.department-media {
+  grid-column: 3;
+  grid-row: 3;
+}
+
+
+
+/* =========================================
+   CENTRAL ROBIX CORE
+   ========================================= */
+
+.system-core {
+  position: relative;
+
+  grid-column: 2;
+  grid-row: 2;
+
+  display: grid;
+
+  place-items: center;
+
+  border:
+    1px solid rgba(255, 48, 48, 0.25);
+
+  background:
+    #080808;
+
+  transform:
+    rotate(45deg);
+
+  box-shadow:
+    0 0 50px rgba(255, 40, 40, 0.07);
+}
+
+
+.system-core-ring {
+  position: absolute;
+
+  inset: -35%;
+
+  border:
+
+    1px dashed rgba(255, 48, 48, 0.17);
+
+  border-radius: 50%;
+}
+
+
+.system-core img {
+  width: 74%;
+
+  transform:
+    rotate(-45deg);
+}
+
+
+.system-core span {
+  position: absolute;
+
+  bottom: -42px;
+
+  transform:
+    rotate(-45deg);
+
+  color: #555;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 8px;
+
+  letter-spacing: 0.2em;
+
+  white-space: nowrap;
+}
+
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+  .about-system {
+    grid-template-columns: 1fr;
+
+    align-content: center;
+
+    gap: 40px;
+  }
+
+
+  .system-map {
+    max-width: 560px;
+
+    margin: 0 auto;
+  }
+
+
+  .about-heading {
+    max-width: 100%;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .system-map {
+    display: grid;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    grid-template-rows: auto;
+
+    aspect-ratio: auto;
+  }
+
+
+  .department-technical,
+  .department-mechanical,
+  .department-electronics,
+  .department-media {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+
+  .system-core {
+    display: none;
+  }
+
 }

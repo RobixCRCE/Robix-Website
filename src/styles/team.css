@@ -1,4 +1,721 @@
-/* Team Section Styles */
-.team {
-  padding: 80px 20px;
+/* =========================================
+   COMMAND / FOUNDER + ADVISORS
+   ========================================= */
+
+#command,
+#team {
+  position: relative;
+
+  min-height: 100vh;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 50% 50%,
+      rgba(255, 40, 40, 0.055),
+      transparent 30%),
+    #050505;
+
+  color: #f2f2f2;
+}
+
+
+.command-grid,
+.team-grid {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.35;
+
+  background-image:
+
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px),
+
+    linear-gradient(90deg,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px);
+
+  background-size:
+    70px 70px;
+}
+
+
+
+/* =========================================
+   COMMAND HEADER
+   ========================================= */
+
+.command-header {
+  position: relative;
+
+  z-index: 2;
+
+  padding:
+    10vh 7vw 0;
+}
+
+
+.command-kicker,
+.team-kicker {
+  color: #ff3030;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 10px;
+
+  letter-spacing: 0.25em;
+
+  margin-bottom: 16px;
+}
+
+
+.command-header h2,
+.team-header h2 {
+  margin: 0;
+
+  font-size:
+    clamp(3.8rem,
+      7vw,
+      7rem);
+
+  line-height: 0.82;
+
+  letter-spacing: -0.065em;
+}
+
+
+.command-header p,
+.team-header p {
+  max-width: 430px;
+
+  margin-top: 24px;
+
+  color: #6f6f6f;
+
+  line-height: 1.65;
+}
+
+
+
+/* =========================================
+   FOUNDER / ADVISORS
+   ========================================= */
+
+.command-roster {
+  position: relative;
+
+  z-index: 2;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+
+  padding:
+    8vh 7vw 12vh;
+}
+
+
+.command-person {
+  position: relative;
+
+  min-height: 470px;
+
+  padding: 18px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background:
+    linear-gradient(145deg,
+      rgba(255, 255, 255, 0.025),
+      rgba(255, 255, 255, 0.006));
+}
+
+
+.founder-card {
+  border-color:
+    rgba(255, 48, 48, 0.23);
+}
+
+
+.person-image {
+  height: 330px;
+
+  display: grid;
+
+  place-items: center;
+
+  background:
+    #090909;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.06);
+
+  color: #353535;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 0.2em;
+}
+
+
+.person-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+.person-role {
+  margin-top: 20px;
+
+  color: #ff3030;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 0.2em;
+}
+
+
+.command-person h3 {
+  margin:
+    10px 0 0;
+
+  font-size:
+    clamp(1.6rem,
+      2.3vw,
+      2.5rem);
+
+  letter-spacing: -0.04em;
+}
+
+
+.command-person p {
+  margin-top: 8px;
+
+  color: #626262;
+}
+
+
+
+/* =========================================
+   TEAM HEADER
+   ========================================= */
+
+.team-header {
+  position: relative;
+
+  z-index: 2;
+
+  padding:
+    9vh 7vw 0;
+}
+
+
+
+/* =========================================
+   DEPARTMENT SELECTOR
+   ========================================= */
+
+.department-selector {
+  position: relative;
+
+  z-index: 5;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  margin:
+    6vh 7vw 0;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-left:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.dept-button {
+  position: relative;
+
+  min-height: 82px;
+
+  padding:
+    16px;
+
+  border: 0;
+
+  border-right:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background:
+    rgba(255, 255, 255, 0.01);
+
+  color: #666;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 0.14em;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+}
+
+
+.dept-button span {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #444;
+}
+
+
+.dept-button::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 0;
+  height: 2px;
+
+  background: #ff3030;
+
+  box-shadow:
+    0 0 12px rgba(255, 48, 48, 0.6);
+
+  transition:
+    width 0.3s ease;
+}
+
+
+.dept-button.active {
+  color: #f0f0f0;
+
+  background:
+    rgba(255, 48, 48, 0.035);
+}
+
+
+.dept-button.active span {
+  color: #ff3030;
+}
+
+
+.dept-button.active::after {
+  width: 100%;
+}
+
+
+
+/* =========================================
+   TEAM STAGE
+   ========================================= */
+
+.team-stage {
+  position: relative;
+
+  z-index: 3;
+
+  margin:
+    22px 7vw 12vh;
+
+  min-height: 700px;
+}
+
+
+
+/* =========================================
+   DEPARTMENT PANEL
+   ========================================= */
+
+.department-panel {
+  display: none;
+
+  opacity: 0;
+}
+
+
+.department-panel.active {
+  display: block;
+
+  opacity: 1;
+}
+
+
+.department-panel-header {
+  display: grid;
+
+  grid-template-columns:
+    1fr minmax(280px, 500px);
+
+  align-items: end;
+
+  gap: 40px;
+
+  padding:
+    42px 0 28px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.08);
+}
+
+
+.panel-index {
+  color: #ff3030;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 0.22em;
+
+  margin-bottom: 12px;
+}
+
+
+.department-panel-header h3 {
+  margin: 0;
+
+  font-size:
+    clamp(3rem,
+      6vw,
+      6rem);
+
+  line-height: 0.86;
+
+  letter-spacing: -0.06em;
+}
+
+
+.department-panel-header>p {
+  margin: 0;
+
+  color: #707070;
+
+  line-height: 1.65;
+}
+
+
+
+/* =========================================
+   LEADS
+   ========================================= */
+
+.lead-layout {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 16px;
+
+  margin-top: 28px;
+}
+
+
+.technical-lead-layout {
+  grid-template-columns:
+    minmax(280px, 520px);
+}
+
+
+.leader-card {
+  display: grid;
+
+  grid-template-columns:
+    minmax(160px, 240px) 1fr;
+
+  min-height: 280px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background:
+    linear-gradient(135deg,
+      rgba(255, 255, 255, 0.025),
+      transparent);
+}
+
+
+.lead-card {
+  border-color:
+    rgba(255, 48, 48, 0.2);
+}
+
+
+.leader-image {
+  display: grid;
+
+  place-items: center;
+
+  min-height: 280px;
+
+  background: #080808;
+
+  color: #353535;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 0.2em;
+
+  border-right:
+    1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+.leader-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+.leader-meta {
+  align-self: end;
+
+  padding: 24px;
+}
+
+
+.leader-meta>span {
+  color: #ff3030;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 8px;
+
+  letter-spacing: 0.18em;
+}
+
+
+.leader-meta h4 {
+  margin:
+    10px 0 0;
+
+  font-size:
+    clamp(1.5rem,
+      2vw,
+      2.3rem);
+
+  letter-spacing: -0.04em;
+}
+
+
+.leader-meta p {
+  margin:
+    8px 0 0;
+
+  color: #5e5e5e;
+}
+
+
+
+/* =========================================
+   MEMBERS
+   ========================================= */
+
+.member-section {
+  margin-top: 42px;
+}
+
+
+.member-heading {
+  margin-bottom: 16px;
+
+  color: #555;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 9px;
+
+  letter-spacing: 0.2em;
+}
+
+
+.member-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+
+.member-card {
+  padding: 10px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  background:
+    rgba(255, 255, 255, 0.012);
+}
+
+
+.member-photo {
+  aspect-ratio: 1;
+
+  display: grid;
+
+  place-items: center;
+
+  background: #080808;
+
+  color: #303030;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 8px;
+
+  letter-spacing: 0.16em;
+}
+
+
+.member-photo img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+.member-card h5 {
+  margin:
+    12px 2px 3px;
+
+  font-size: 0.85rem;
+
+  font-weight: 500;
+}
+
+
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+  .command-roster {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+
+  .department-selector {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+
+  .department-panel-header {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .lead-layout {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .member-grid {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .command-roster {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .department-selector {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+
+
+  .team-stage {
+    margin-left: 5vw;
+    margin-right: 5vw;
+  }
+
+
+  .leader-card {
+    grid-template-columns:
+      1fr;
+  }
+
+
+  .leader-image {
+    min-height: 320px;
+
+    border-right: 0;
+
+    border-bottom:
+      1px solid rgba(255, 255, 255, 0.07);
+  }
+
+
+  .member-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
 }
