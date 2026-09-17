@@ -1,34 +1,744 @@
+/* =========================================
+   HERO
+   ========================================= */
+
 #hero {
+  position: relative;
+
   min-height: 100vh;
 
-  display: grid;
-  place-items: center;
+  overflow: hidden;
 
-  padding: 40px;
+  display: flex;
 
-  background: #050505;
+  align-items: center;
+
+  padding:
+    clamp(90px, 10vh, 140px) clamp(28px, 7vw, 120px);
+
+  background:
+
+    radial-gradient(circle at 72% 48%,
+      rgba(255, 40, 40, 0.11),
+      transparent 22%),
+
+    radial-gradient(circle at 50% 50%,
+      #0b0b0b,
+      #040404 72%);
+
+  color: #f4f4f4;
 }
 
-.hero-content {
-  width: min(1200px, 90vw);
+
+
+/* =========================================
+   BACKGROUND GRID
+   ========================================= */
+
+.hero-grid {
+  position: absolute;
+
+  inset: 0;
+
+  opacity: 0.18;
+
+  background-image:
+
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px),
+
+    linear-gradient(90deg,
+      rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px);
+
+  background-size:
+    70px 70px;
+
+  mask-image:
+
+    radial-gradient(circle at center,
+      black 20%,
+      transparent 85%);
 }
+
+
+
+/* =========================================
+   OUTER FRAME
+   ========================================= */
+
+.hero-frame {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+}
+
+
+
+.frame-line {
+  position: absolute;
+
+  left: 7vw;
+
+  right: 7vw;
+
+  height: 1px;
+
+  background:
+
+    linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.14),
+      transparent);
+}
+
+
+.frame-top {
+  top: 7vh;
+}
+
+
+.frame-bottom {
+  bottom: 7vh;
+}
+
+
+
+/* =========================================
+   FRAME CORNERS
+   ========================================= */
+
+.frame-corner {
+  position: absolute;
+
+  width: 48px;
+
+  height: 48px;
+
+  border-color:
+    rgba(255, 60, 60, 0.38);
+}
+
+
+
+.corner-tl {
+  top: 7vh;
+
+  left: 7vw;
+
+  border-top: 1px solid;
+
+  border-left: 1px solid;
+}
+
+
+.corner-tr {
+  top: 7vh;
+
+  right: 7vw;
+
+  border-top: 1px solid;
+
+  border-right: 1px solid;
+}
+
+
+.corner-bl {
+  bottom: 7vh;
+
+  left: 7vw;
+
+  border-bottom: 1px solid;
+
+  border-left: 1px solid;
+}
+
+
+.corner-br {
+  bottom: 7vh;
+
+  right: 7vw;
+
+  border-bottom: 1px solid;
+
+  border-right: 1px solid;
+}
+
+
+
+/* =========================================
+   HERO TEXT
+   ========================================= */
+
+.hero-copy {
+  position: relative;
+
+  z-index: 5;
+
+  width:
+    min(58vw, 900px);
+}
+
+
 
 .hero-kicker {
-  color: red;
+  margin-bottom: 22px;
 
-  font-family: monospace;
+  font-family:
+    "Courier New",
+    monospace;
 
-  letter-spacing: 0.2em;
+  font-size:
+    clamp(10px, 1vw, 13px);
+
+  letter-spacing:
+    0.26em;
+
+  color:
+    #ff3030;
 }
 
-#hero h1 {
+
+
+.hero-kicker::before {
+  content:
+    "▰ ";
+
+  margin-right:
+    8px;
+}
+
+
+
+.hero-title {
   margin: 0;
 
-  font-size: clamp(4rem,
-      10vw,
+  font-size:
+    clamp(4rem,
+      8.5vw,
       9rem);
 
-  line-height: 0.85;
+  line-height:
+    0.79;
 
-  letter-spacing: -0.06em;
+  letter-spacing:
+    -0.075em;
+
+  text-transform:
+    uppercase;
+}
+
+
+
+.hero-line {
+  display: block;
+
+  transform-origin:
+    left center;
+}
+
+
+
+.hero-line-accent {
+  color:
+    #f2f2f2;
+
+  text-shadow:
+
+    0 0 40px rgba(255, 50, 50, 0.06);
+}
+
+
+
+/* =========================================
+   DESCRIPTION
+   ========================================= */
+
+.hero-description {
+  max-width:
+    540px;
+
+  margin:
+    32px 0 0;
+
+  color:
+    #898989;
+
+  font-size:
+    clamp(0.9rem,
+      1.2vw,
+      1.05rem);
+
+  line-height:
+    1.7;
+}
+
+
+
+/* =========================================
+   META
+   ========================================= */
+
+.hero-meta {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap:
+    10px 28px;
+
+  margin-top:
+    28px;
+}
+
+
+.hero-meta span {
+  position: relative;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size:
+    10px;
+
+  letter-spacing:
+    0.18em;
+
+  color:
+    #686868;
+}
+
+
+.hero-meta span:not(:last-child)::after {
+  content: "";
+
+  position: absolute;
+
+  right: -15px;
+
+  top: 50%;
+
+  width: 3px;
+
+  height: 3px;
+
+  background:
+    #ff3030;
+
+  transform:
+    translateY(-50%) rotate(45deg);
+}
+
+
+
+/* =========================================
+   RIGHT SIDE MACHINE
+   ========================================= */
+
+.hero-machine {
+  position: absolute;
+
+  right:
+    clamp(-170px,
+      -4vw,
+      -40px);
+
+  top: 50%;
+
+  width:
+    min(48vw,
+      720px);
+
+  aspect-ratio:
+    1;
+
+  transform:
+    translateY(-50%);
+
+  z-index: 3;
+}
+
+
+
+/* =========================================
+   MACHINE RINGS
+   ========================================= */
+
+.machine-ring {
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  border-radius:
+    50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border:
+
+    1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+
+.ring-outer {
+  width: 90%;
+
+  height: 90%;
+
+  border-style:
+    dashed;
+}
+
+
+
+.ring-middle {
+  width: 70%;
+
+  height: 70%;
+
+  border-color:
+    rgba(255, 50, 50, 0.18);
+}
+
+
+
+.ring-inner {
+  width: 52%;
+
+  height: 52%;
+
+  border-color:
+    rgba(255, 50, 50, 0.3);
+}
+
+
+
+/* =========================================
+   MECHANICAL PANELS
+   ========================================= */
+
+.machine-panel {
+  position: absolute;
+
+  top: 50%;
+
+  width: 43%;
+
+  height: 30%;
+
+  border:
+
+    1px solid rgba(255, 255, 255, 0.09);
+
+  background:
+
+    repeating-linear-gradient(135deg,
+
+      rgba(255, 255, 255, 0.025) 0 8px,
+
+      transparent 8px 18px),
+
+    linear-gradient(145deg,
+
+      #151515,
+
+      #080808);
+
+  box-shadow:
+
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+
+
+.machine-panel-left {
+  left: 2%;
+
+  transform:
+    translateY(-50%) rotate(-7deg);
+
+  clip-path:
+
+    polygon(0 18%,
+      76% 0,
+      100% 50%,
+      75% 100%,
+      0 82%);
+}
+
+
+
+.machine-panel-right {
+  right: 2%;
+
+  transform:
+    translateY(-50%) rotate(7deg);
+
+  clip-path:
+
+    polygon(24% 0,
+      100% 18%,
+      100% 82%,
+      25% 100%,
+      0 50%);
+}
+
+
+
+/* =========================================
+   CENTRAL CORE
+   ========================================= */
+
+.machine-core {
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  width: 40%;
+
+  aspect-ratio:
+    1;
+
+  transform:
+    translate(-50%, -50%) rotate(45deg);
+
+  border:
+
+    1px solid rgba(255, 50, 50, 0.46);
+
+  background:
+
+    linear-gradient(135deg,
+      rgba(255, 40, 40, 0.10),
+      transparent 45%),
+
+    #090909;
+
+  box-shadow:
+
+    inset 0 0 0 14px #101010,
+
+    inset 0 0 0 15px rgba(255, 255, 255, 0.05),
+
+    0 0 55px rgba(255, 40, 40, 0.12);
+}
+
+
+
+.machine-core-glow {
+  position: absolute;
+
+  inset: 28%;
+
+  background:
+    #ff3030;
+
+  box-shadow:
+
+    0 0 24px rgba(255, 48, 48, 0.6),
+
+    0 0 60px rgba(255, 48, 48, 0.17);
+}
+
+
+
+.hero-logo {
+  position: absolute;
+
+  left: 50%;
+
+  top: 50%;
+
+  width: 75%;
+
+  transform:
+
+    translate(-50%, -50%) rotate(-45deg);
+
+  opacity:
+    0.9;
+
+  filter:
+
+    drop-shadow(0 0 12px rgba(255, 50, 50, 0.16));
+}
+
+
+
+/* =========================================
+   MACHINE LABELS
+   ========================================= */
+
+.machine-label {
+  position: absolute;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size:
+    9px;
+
+  letter-spacing:
+    0.2em;
+
+  color:
+    #555;
+}
+
+
+.label-top {
+  top: 4%;
+}
+
+
+.label-bottom {
+  bottom: 4%;
+}
+
+
+
+/* =========================================
+   SCROLL INDICATOR
+   ========================================= */
+
+.hero-scroll {
+  position: absolute;
+
+  left:
+    clamp(28px,
+      7vw,
+      120px);
+
+  bottom:
+    7vh;
+
+  z-index: 6;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+}
+
+
+
+.hero-scroll span {
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size:
+    9px;
+
+  letter-spacing:
+    0.22em;
+
+  color:
+    #555;
+}
+
+
+
+.scroll-line {
+  width: 70px;
+
+  height: 1px;
+
+  background:
+
+    linear-gradient(90deg,
+      #ff3030,
+      transparent);
+}
+
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 900px) {
+
+  #hero {
+    align-items:
+      flex-start;
+
+    padding-top:
+      18vh;
+  }
+
+
+  .hero-copy {
+    width:
+      92%;
+  }
+
+
+  .hero-title {
+    font-size:
+      clamp(3.7rem,
+        15vw,
+        7rem);
+  }
+
+
+  .hero-machine {
+    width:
+      78vw;
+
+    right:
+      -34vw;
+
+    opacity:
+      0.5;
+  }
+
+
+  .hero-description {
+    max-width:
+      75vw;
+  }
+
+}
+
+
+
+@media (max-width: 600px) {
+
+  .hero-machine {
+    width:
+      100vw;
+
+    right:
+      -58vw;
+  }
+
+
+  .hero-meta {
+    max-width:
+      65vw;
+  }
+
+
+  .hero-scroll {
+    bottom:
+      4vh;
+  }
+
 }

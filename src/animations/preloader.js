@@ -922,7 +922,26 @@ export function initPreloader() {
 
   );
 
+  tl.to(
 
+    "#logoStage",
+
+    {
+
+      scale: 1.9,
+
+      opacity: 0,
+
+      duration: 0.75,
+
+      ease:
+        "power4.in"
+
+    },
+
+    "exit+=.15"
+
+  );
 
   tl.to(
 
