@@ -66,8 +66,7 @@ export function initHero() {
     ".hero-machine",
     {
       opacity: 0,
-      scale: 0.78,
-      rotation: 8
+      scale: 0.86
     }
   );
 
@@ -117,11 +116,8 @@ export function initHero() {
         opacity: 1,
 
         scale: 1,
-
-        rotation: 0,
-
-        duration:
-          1.05
+        duration: 1.05,
+        ease: "power4.out"
 
       }
 

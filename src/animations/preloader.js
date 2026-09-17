@@ -967,28 +967,33 @@ export function initPreloader() {
 
 
   tl.to(
-
     preloader,
-
     {
-
       opacity: 0,
 
       duration: 0.25,
 
       onComplete: () => {
 
-        preloader.style.display =
-          "none";
+        preloader.style.display = "none";
 
         document.body.classList.remove(
           "loading"
         );
 
+        /*
+         * Tell hero.js:
+         * the intro is finished,
+         * start the hero animation.
+         */
+        window.dispatchEvent(
+          new CustomEvent(
+            "robix:introComplete"
+          )
+        );
+
       }
-
     }
-
   );
 
 }
