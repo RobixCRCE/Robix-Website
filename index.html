@@ -214,12 +214,8 @@
         <div class="machine-panel machine-panel-right"></div>
 
 
-        <div class="machine-core">
-
-          <div class="machine-core-glow"></div>
-
-          <img src="/logos/robix-logo.png" alt="" class="hero-logo">
-
+        <div class="machine-core-3d" id="hero-3d-core" aria-label="ROBIX 3D Logo">
+          <canvas id="hero-3d-canvas"></canvas>
         </div>
 
 
@@ -583,10 +579,10 @@
 
 
           <!-- =====================================
-           MACHINE 01
+           MACHINE 01 — AZREAL
            ===================================== -->
 
-          <article class="machine-card">
+          <article class="machine-card" data-machine-id="azreal">
 
             <div class="machine-info">
 
@@ -595,40 +591,38 @@
               </div>
 
               <h3>
-                BOT NAME
+                AZREAL
               </h3>
 
               <div class="machine-type">
-                ROBOT CLASS / TYPE
+                ROBOSUMO / 5 KG
               </div>
 
               <p class="machine-description">
-                Replace this with a short description
-                of the robot, what it was built for and
-                what makes it technically interesting.
+                ROBIX competition machine that secured 2nd place in RoboSumo at SPCE in the 5 kg weight class.
               </p>
 
 
               <div class="machine-specs">
 
                 <div class="spec">
-                  <span>STATUS</span>
-                  <strong>ACTIVE</strong>
+                  <span>COMPETITION</span>
+                  <strong>ROBOSUMO</strong>
                 </div>
 
                 <div class="spec">
-                  <span>MASS</span>
-                  <strong>-- KG</strong>
+                  <span>VENUE</span>
+                  <strong>SPCE</strong>
                 </div>
 
                 <div class="spec">
-                  <span>DRIVE</span>
-                  <strong>--</strong>
+                  <span>WEIGHT CLASS</span>
+                  <strong>5 KG</strong>
                 </div>
 
                 <div class="spec">
-                  <span>CONTROL</span>
-                  <strong>--</strong>
+                  <span>RESULT</span>
+                  <strong class="spec-accent">2ND PLACE</strong>
                 </div>
 
               </div>
@@ -640,10 +634,53 @@
 
               <div class="machine-scan"></div>
 
-              <div class="machine-image-frame">
+              <div class="machine-image-frame" data-machine-viewer data-mode="actual">
 
-                <div class="machine-image-placeholder">
-                  ADD BOT IMAGE
+                <div class="machine-view-stack">
+
+                  <img
+                    class="machine-view-image active"
+                    data-view="actual"
+                    src="/bots/AZREAL_REAL.png"
+                    alt="Azreal ROBIX competition robot — actual build"
+                  >
+
+                  <img
+                    class="machine-view-image"
+                    data-view="cad"
+                    src="/bots/AZREAL_CAD.png"
+                    alt="Azreal ROBIX competition robot — CAD view"
+                    loading="lazy"
+                  >
+
+                  <img
+                    class="machine-view-image"
+                    data-view="blueprint"
+                    src="/bots/AZREAL_BLUE.png"
+                    alt="Azreal ROBIX competition robot — blueprint view"
+                    loading="lazy"
+                  >
+
+                </div>
+
+                <div class="machine-fallback" aria-hidden="true">
+                  VISUAL DATA // UNAVAILABLE
+                </div>
+
+                <div class="machine-view-controls">
+
+                  <button type="button" data-set-view="actual" class="active">
+                    ACTUAL
+                  </button>
+
+                  <button type="button" data-set-view="cad">
+                    CAD
+                  </button>
+
+                  <button type="button" data-set-view="blueprint">
+                    BLUEPRINT
+                  </button>
+
                 </div>
 
               </div>
@@ -654,7 +691,7 @@
               </div>
 
               <div class="visual-label visual-label-bottom">
-                SCAN // COMPLETE
+                <span class="mode-label">VIEW // ACTUAL</span> <span class="label-divider">//</span> SCAN COMPLETE
               </div>
 
             </div>
@@ -664,10 +701,10 @@
 
 
           <!-- =====================================
-           MACHINE 02
+           MACHINE 02 — PALLAS
            ===================================== -->
 
-          <article class="machine-card">
+          <article class="machine-card" data-machine-id="pallas">
 
             <div class="machine-info">
 
@@ -676,40 +713,38 @@
               </div>
 
               <h3>
-                BOT NAME
+                PALLAS
               </h3>
 
               <div class="machine-type">
-                ROBOT CLASS / TYPE
+                ROBOSUMO / 5 KG
               </div>
 
               <p class="machine-description">
-                Add the purpose, competition and
-                important engineering features of
-                this machine here.
+                ROBIX competition machine that secured 3rd place in RoboSumo at SPCE in the 5 kg weight class.
               </p>
 
 
               <div class="machine-specs">
 
                 <div class="spec">
-                  <span>STATUS</span>
-                  <strong>ACTIVE</strong>
+                  <span>COMPETITION</span>
+                  <strong>ROBOSUMO</strong>
                 </div>
 
                 <div class="spec">
-                  <span>MASS</span>
-                  <strong>-- KG</strong>
+                  <span>VENUE</span>
+                  <strong>SPCE</strong>
                 </div>
 
                 <div class="spec">
-                  <span>DRIVE</span>
-                  <strong>--</strong>
+                  <span>WEIGHT CLASS</span>
+                  <strong>5 KG</strong>
                 </div>
 
                 <div class="spec">
-                  <span>CONTROL</span>
-                  <strong>--</strong>
+                  <span>RESULT</span>
+                  <strong class="spec-accent">3RD PLACE</strong>
                 </div>
 
               </div>
@@ -721,10 +756,53 @@
 
               <div class="machine-scan"></div>
 
-              <div class="machine-image-frame">
+              <div class="machine-image-frame" data-machine-viewer data-mode="actual">
 
-                <div class="machine-image-placeholder">
-                  ADD BOT IMAGE
+                <div class="machine-view-stack">
+
+                  <img
+                    class="machine-view-image active"
+                    data-view="actual"
+                    src="/bots/PALLAS_REAL.png"
+                    alt="Pallas ROBIX competition robot — actual build"
+                  >
+
+                  <img
+                    class="machine-view-image"
+                    data-view="cad"
+                    src="/bots/PALLAS_CAD.png"
+                    alt="Pallas ROBIX competition robot — CAD view"
+                    loading="lazy"
+                  >
+
+                  <img
+                    class="machine-view-image"
+                    data-view="blueprint"
+                    src="/bots/PALLAS_BLUE.png"
+                    alt="Pallas ROBIX competition robot — blueprint view"
+                    loading="lazy"
+                  >
+
+                </div>
+
+                <div class="machine-fallback" aria-hidden="true">
+                  VISUAL DATA // UNAVAILABLE
+                </div>
+
+                <div class="machine-view-controls">
+
+                  <button type="button" data-set-view="actual" class="active">
+                    ACTUAL
+                  </button>
+
+                  <button type="button" data-set-view="cad">
+                    CAD
+                  </button>
+
+                  <button type="button" data-set-view="blueprint">
+                    BLUEPRINT
+                  </button>
+
                 </div>
 
               </div>
@@ -734,7 +812,7 @@
               </div>
 
               <div class="visual-label visual-label-bottom">
-                SCAN // COMPLETE
+                <span class="mode-label">VIEW // ACTUAL</span> <span class="label-divider">//</span> SCAN COMPLETE
               </div>
 
             </div>
@@ -744,10 +822,10 @@
 
 
           <!-- =====================================
-           MACHINE 03
+           MACHINE 03 — SHILDEAR
            ===================================== -->
 
-          <article class="machine-card">
+          <article class="machine-card" data-machine-id="shildear">
 
             <div class="machine-info">
 
@@ -756,40 +834,38 @@
               </div>
 
               <h3>
-                BOT NAME
+                SHILDEAR
               </h3>
 
               <div class="machine-type">
-                ROBOT CLASS / TYPE
+                ROBOSUMO / 5 KG
               </div>
 
               <p class="machine-description">
-                Use this section for another robot,
-                experimental platform or major
-                ROBIX project.
+                ROBIX competition machine that secured 1st place in RoboSumo at SPCE in the 5 kg weight class.
               </p>
 
 
               <div class="machine-specs">
 
                 <div class="spec">
-                  <span>STATUS</span>
-                  <strong>ACTIVE</strong>
+                  <span>COMPETITION</span>
+                  <strong>ROBOSUMO</strong>
                 </div>
 
                 <div class="spec">
-                  <span>MASS</span>
-                  <strong>-- KG</strong>
+                  <span>VENUE</span>
+                  <strong>SPCE</strong>
                 </div>
 
                 <div class="spec">
-                  <span>DRIVE</span>
-                  <strong>--</strong>
+                  <span>WEIGHT CLASS</span>
+                  <strong>5 KG</strong>
                 </div>
 
                 <div class="spec">
-                  <span>CONTROL</span>
-                  <strong>--</strong>
+                  <span>RESULT</span>
+                  <strong class="spec-accent">1ST PLACE</strong>
                 </div>
 
               </div>
@@ -801,10 +877,53 @@
 
               <div class="machine-scan"></div>
 
-              <div class="machine-image-frame">
+              <div class="machine-image-frame" data-machine-viewer data-mode="actual">
 
-                <div class="machine-image-placeholder">
-                  ADD BOT IMAGE
+                <div class="machine-view-stack">
+
+                  <img
+                    class="machine-view-image active"
+                    data-view="actual"
+                    src="/bots/SHILEDAR_TRANS.png"
+                    alt="Shildear ROBIX competition robot — actual build"
+                  >
+
+                  <img
+                    class="machine-view-image"
+                    data-view="cad"
+                    src="/bots/SHILEDAR_CAD.png"
+                    alt="Shildear ROBIX competition robot — CAD view"
+                    loading="lazy"
+                  >
+
+                  <img
+                    class="machine-view-image"
+                    data-view="blueprint"
+                    src="/bots/SHILEDAR_BLUE.png"
+                    alt="Shildear ROBIX competition robot — blueprint view"
+                    loading="lazy"
+                  >
+
+                </div>
+
+                <div class="machine-fallback" aria-hidden="true">
+                  VISUAL DATA // UNAVAILABLE
+                </div>
+
+                <div class="machine-view-controls">
+
+                  <button type="button" data-set-view="actual" class="active">
+                    ACTUAL
+                  </button>
+
+                  <button type="button" data-set-view="cad">
+                    CAD
+                  </button>
+
+                  <button type="button" data-set-view="blueprint">
+                    BLUEPRINT
+                  </button>
+
                 </div>
 
               </div>
@@ -814,7 +933,7 @@
               </div>
 
               <div class="visual-label visual-label-bottom">
-                SCAN // COMPLETE
+                <span class="mode-label">VIEW // ACTUAL</span> <span class="label-divider">//</span> SCAN COMPLETE
               </div>
 
             </div>
@@ -1294,7 +1413,7 @@
         <article class="command-person">
 
           <div class="person-image">
-            <span>CL</span>
+            <img src="/team/Caleb.jpeg" alt="Caleb Lewis" loading="lazy">
           </div>
 
           <div class="person-role">
@@ -1342,7 +1461,7 @@
         <article class="command-person">
 
           <div class="person-image">
-            <span>NP</span>
+            <img src="/team/Naimish.jpeg" alt="Naimish Purohit" loading="lazy">
           </div>
 
           <div class="person-role">
@@ -1676,13 +1795,6 @@
                 <span class="member-role">Mechanical Member</span>
               </article>
 
-              <article class="member-card">
-                <div class="member-photo">
-                  <img src="/team/emaanual.JPG" alt="Emmanuel" loading="lazy">
-                </div>
-                <h5>Emmanuel</h5>
-                <span class="member-role">Mechanical Member</span>
-              </article>
 
             </div>
 
@@ -1921,6 +2033,13 @@
                   </a>
                 </div>
               </article>
+              <article class="member-card">
+                <div class="member-photo">
+                  <img src="/team/emaanual.JPG" alt="Emmanuel" loading="lazy">
+                </div>
+                <h5>Emmanuel</h5>
+                <span class="member-role">Mechanical Member</span>
+              </article>
 
             </div>
 
@@ -2129,31 +2248,6 @@
                 </div>
               </article>
 
-              <article class="member-card">
-                <div class="member-photo">
-                  <span>PS</span>
-                </div>
-                <h5>Priyansh Savla</h5>
-                <span class="member-role">Documentation Member</span>
-                <div class="member-socials">
-                  <a href="https://www.linkedin.com/in/priyansh-savla-b5b856381" target="_blank"
-                    rel="noopener noreferrer" aria-label="Priyansh Savla on LinkedIn" title="LinkedIn"
-                    class="social-link linkedin-link">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
-                      <path
-                        d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
-                    </svg>
-                  </a>
-                  <a href="mailto:priyanshsavla13@gmail.com" aria-label="Email Priyansh Savla" title="Email"
-                    class="social-link email-link">
-                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
-                      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                      <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                    </svg>
-                  </a>
-                </div>
-              </article>
 
             </div>
 
@@ -2227,7 +2321,7 @@
             <div class="logo-core-ring ring-one"></div>
             <div class="logo-core-ring ring-two"></div>
 
-            <img src="/logos/robix-logo.png" alt="ROBIX CRCE" class="contact-logo">
+            <img src="/logos/Reddit.png" alt="ROBIX CRCE" class="contact-logo">
 
           </div>
 

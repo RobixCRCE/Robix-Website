@@ -22,19 +22,17 @@ export function initAboutTransition() {
 
     if (!hero || !about) {
         return;
-
-        window.addEventListener(
-            "robix:introComplete",
-            () => {
-
-                ScrollTrigger.refresh();
-
-            },
-            {
-                once: true
-            }
-        );
     }
+
+    window.addEventListener(
+        "robix:introComplete",
+        () => {
+            ScrollTrigger.refresh();
+        },
+        {
+            once: true
+        }
+    );
 
 
 

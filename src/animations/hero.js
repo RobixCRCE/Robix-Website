@@ -1,4 +1,5 @@
 import gsap from "gsap";
+import { initHero3D } from "./hero3d.js";
 
 
 export function initHero() {
@@ -10,6 +11,8 @@ export function initHero() {
   if (!hero) {
     return;
   }
+
+  initHero3D();
 
 
 
