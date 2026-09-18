@@ -41,6 +41,46 @@
 
 
     /* =====================================================
+       SYSTEMS ARCHITECTURE & 3D MODEL REMOVAL
+       ===================================================== */
+
+    .hero-machine,
+    .machine-core-3d,
+    #hero-3d-core,
+    #hero-3d-canvas,
+    .machine-label,
+    .system-core {
+        display: none !important;
+    }
+
+    .system-map {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        z-index: 2;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: auto;
+        aspect-ratio: auto;
+        gap: 12px;
+    }
+
+    .department-technical,
+    .department-mechanical,
+    .department-electronics,
+    .department-media {
+        grid-column: auto;
+        grid-row: auto;
+    }
+
+    .department {
+        position: relative;
+        z-index: 2;
+        padding: 18px 14px;
+    }
+
+
+    /* =====================================================
        MACHINES
        ===================================================== */
 
@@ -693,6 +733,22 @@
             clamp(2.65rem,
                 12.5vw,
                 3.5rem);
+    }
+
+    .system-map {
+        gap: 8px;
+    }
+
+    .department {
+        padding: 14px 10px;
+    }
+
+    .department h3 {
+        font-size: 0.95rem;
+    }
+
+    .department p {
+        font-size: 0.72rem;
     }
 
 }
