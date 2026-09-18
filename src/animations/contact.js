@@ -4,6 +4,10 @@ import {
     ScrollTrigger
 } from "gsap/ScrollTrigger";
 
+import {
+    initForm
+} from "@formspree/ajax/dist/index.mjs";
+
 
 gsap.registerPlugin(
     ScrollTrigger
@@ -24,31 +28,45 @@ export function initContact() {
     }
 
 
+    /* =========================================
+       FORMSpree
+       ========================================= */
+
+    const contactForm =
+        document.querySelector(
+            "#robix-contact-form"
+        );
+
+
+    if (contactForm) {
+
+        initForm({
+
+            formElement:
+                "#robix-contact-form",
+
+            formId:
+                "mgoqpyky",
+
+            data: {
+
+                source:
+                    "ROBIX Website V2"
+
+            }
+
+        });
+
+    }
+
+
 
     /* =========================================
-       INITIAL STATES
+       CONTACT ENTRANCE
        ========================================= */
 
     gsap.set(
-        ".contact-kicker",
-        {
-            opacity: 0,
-            y: 15
-        }
-    );
-
-
-    gsap.set(
-        ".contact-title span",
-        {
-            opacity: 0,
-            y: 80
-        }
-    );
-
-
-    gsap.set(
-        ".contact-description",
+        ".contact-header",
         {
             opacity: 0,
             y: 25
@@ -57,45 +75,43 @@ export function initContact() {
 
 
     gsap.set(
-        ".contact-cta",
+        ".contact-brand",
         {
             opacity: 0,
-            y: 20
+            x: -45
         }
     );
 
 
     gsap.set(
-        ".contact-channel",
+        ".contact-location",
         {
             opacity: 0,
-            x: 40
+            y: 35
         }
     );
 
 
     gsap.set(
-        ".contact-core",
+        ".contact-form-panel",
         {
             opacity: 0,
-            scale: 0.75,
-            rotation: 12
+            x: 45
         }
     );
 
 
     gsap.set(
-        ".contact-status",
+        ".contact-divider",
         {
-            opacity: 0
+            opacity: 0,
+            scaleY: 0,
+            transformOrigin:
+                "50% 50%"
         }
     );
 
 
-
-    /* =========================================
-       ENTRANCE TIMELINE
-       ========================================= */
 
     const tl =
         gsap.timeline({
@@ -106,7 +122,7 @@ export function initContact() {
                     section,
 
                 start:
-                    "top 55%",
+                    "top 65%",
 
                 once:
                     true
@@ -118,89 +134,29 @@ export function initContact() {
 
 
     tl.to(
-        ".contact-core",
+        ".contact-header",
         {
             opacity: 1,
+            y: 0,
 
-            scale: 1,
-
-            rotation: 0,
-
-            duration: 1.15,
+            duration: 0.5,
 
             ease:
-                "power4.out"
+                "power3.out"
         }
     );
 
 
     tl.to(
-        ".contact-status",
+        ".contact-divider",
         {
             opacity: 1,
+            scaleY: 1,
 
-            duration: 0.3
-        },
-
-        "-=.75"
-    );
-
-
-    tl.to(
-        ".contact-kicker",
-        {
-            opacity: 1,
-
-            y: 0,
-
-            duration: 0.35
-        },
-
-        "-=.65"
-    );
-
-
-    tl.to(
-        ".contact-title span",
-        {
-            opacity: 1,
-
-            y: 0,
-
-            duration: 0.65,
-
-            stagger: 0.09,
+            duration: 0.7,
 
             ease:
-                "power4.out"
-        },
-
-        "-=.5"
-    );
-
-
-    tl.to(
-        ".contact-description",
-        {
-            opacity: 1,
-
-            y: 0,
-
-            duration: 0.45
-        },
-
-        "-=.28"
-    );
-
-
-    tl.to(
-        ".contact-cta",
-        {
-            opacity: 1,
-
-            y: 0,
-
-            duration: 0.4
+                "power3.out"
         },
 
         "-=.2"
@@ -208,114 +164,110 @@ export function initContact() {
 
 
     tl.to(
-        ".contact-channel",
+        ".contact-brand",
         {
             opacity: 1,
-
             x: 0,
 
-            duration: 0.4,
-
-            stagger: 0.07,
+            duration: 0.65,
 
             ease:
                 "power3.out"
         },
 
-        "-=.3"
+        "-=.45"
     );
 
 
-
-    /* =========================================
-       AMBIENT CORE MOTION
-       ========================================= */
-
-    gsap.to(
-        ".contact-core .ring-a",
+    tl.to(
+        ".contact-location",
         {
-            rotation: 360,
+            opacity: 1,
+            y: 0,
 
-            duration: 70,
-
-            repeat: -1,
-
-            ease: "none",
-
-            transformOrigin:
-                "50% 50%"
-        }
-    );
-
-
-    gsap.to(
-        ".contact-core .ring-b",
-        {
-            rotation: -360,
-
-            duration: 50,
-
-            repeat: -1,
-
-            ease: "none",
-
-            transformOrigin:
-                "50% 50%"
-        }
-    );
-
-
-    gsap.to(
-        ".contact-core .ring-c",
-        {
-            rotation: 360,
-
-            duration: 34,
-
-            repeat: -1,
-
-            ease: "none",
-
-            transformOrigin:
-                "50% 50%"
-        }
-    );
-
-
-
-    /* =========================================
-       CORE PULSE
-       ========================================= */
-
-    gsap.to(
-        ".contact-core-center",
-        {
-            boxShadow:
-                "0 0 85px rgba(255,40,40,0.22)",
-
-            duration: 1.8,
-
-            repeat: -1,
-
-            yoyo: true,
+            duration: 0.65,
 
             ease:
-                "sine.inOut"
+                "power3.out"
+        },
+
+        "-=.5"
+    );
+
+
+    tl.to(
+        ".contact-form-panel",
+        {
+            opacity: 1,
+            x: 0,
+
+            duration: 0.65,
+
+            ease:
+                "power3.out"
+        },
+
+        "-=.5"
+    );
+
+
+
+    /* =========================================
+       RADAR SWEEP
+       ========================================= */
+
+    gsap.to(
+        ".radar-sweep",
+        {
+            rotation: 360,
+
+            duration: 5,
+
+            repeat: -1,
+
+            ease: "none",
+
+            transformOrigin:
+                "0% 0%"
         }
     );
 
 
 
     /* =========================================
-       STATUS DOT
+       LOCATION PULSE
        ========================================= */
 
     gsap.to(
-        ".status-dot",
+        ".location-pulse",
         {
-            opacity: 0.35,
+            scale: 2.3,
 
-            duration: 0.8,
+            opacity: 0,
+
+            duration: 1.7,
+
+            repeat: -1,
+
+            ease:
+                "power1.out"
+        }
+    );
+
+
+
+    /* =========================================
+       ROBIX LOGO GLOW
+       ========================================= */
+
+    gsap.to(
+        ".contact-logo",
+        {
+            filter:
+                "drop-shadow(0 0 9px rgba(255,255,255,.22)) " +
+                "drop-shadow(0 0 27px rgba(255,35,35,.32))",
+
+            duration: 1.8,
 
             repeat: -1,
 
