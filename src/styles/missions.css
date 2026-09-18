@@ -54,7 +54,7 @@
     position: absolute;
 
     left: 6vw;
-    top: 6vh;
+    top: 5vh;
 
     z-index: 20;
 
@@ -94,13 +94,13 @@
 .missions-header p {
     max-width: 420px;
 
-    margin-top: 18px;
+    margin-top: 14px;
 
     color: #888;
 
-    font-size: 0.88rem;
+    font-size: 0.86rem;
 
-    line-height: 1.65;
+    line-height: 1.55;
 }
 
 
@@ -206,7 +206,7 @@
     gap: 5vw;
 
     padding:
-        clamp(280px, 32vh, 350px) 6vw 6vh;
+        12vh 6vw 5vh;
 
     opacity: 0;
 
@@ -228,6 +228,7 @@
 
 .mission-copy {
     max-width: 560px;
+    margin-top: clamp(140px, 16vh, 200px);
 }
 
 
@@ -261,16 +262,16 @@
 
 .mission-copy h3 {
     margin:
-        18px 0 0;
+        14px 0 0;
 
     font-size:
-        clamp(4rem,
-            7vw,
-            7rem);
+        clamp(3rem,
+            5vw,
+            5.2rem);
 
-    line-height: 0.83;
+    line-height: 0.85;
 
-    letter-spacing: -0.065em;
+    letter-spacing: -0.055em;
 }
 
 
@@ -361,6 +362,10 @@
 
     align-items: center;
     justify-content: center;
+
+    margin: 0;
+
+    align-self: center;
 }
 
 
@@ -371,12 +376,17 @@
 .mission-image-frame {
     position: relative;
 
-    width: 84%;
-    height: 84%;
+    width: min(88%, 680px);
+    height: 100%;
 
-    display: grid;
+    max-height: min(56vh, 590px);
 
-    place-items: center;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto;
 
     overflow: hidden;
 
@@ -399,7 +409,7 @@
             0 93%,
             0 7%);
 
-    padding: 8px;
+    padding: 10px;
 }
 
 
@@ -423,8 +433,11 @@
     width: 100%;
     height: 100%;
 
-    object-fit: contain;
-    object-position: center;
+    max-width: 100%;
+    max-height: 100%;
+
+    object-fit: contain !important;
+    object-position: center center;
 
     display: block;
 
@@ -502,14 +515,14 @@
 
 
 .label-a {
-    left: 9%;
-    top: 6%;
+    left: 6%;
+    top: -24px;
 }
 
 
 .label-b {
-    right: 9%;
-    bottom: 6%;
+    right: 6%;
+    bottom: -24px;
 }
 
 

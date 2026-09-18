@@ -311,18 +311,30 @@
 
     .mission-copy {
         width: 100%;
-        max-width: none;
+        max-width: 100%;
+        min-width: 0;
+
+        overflow: hidden;
+        margin-top: 0;
     }
 
     .mission-copy h3 {
-        font-size:
-            clamp(3.6rem,
-                16vw,
-                5.2rem);
-
-        line-height: 0.82;
+        width: 100%;
+        max-width: 100%;
 
         margin-top: 18px;
+
+        font-size:
+            clamp(2.8rem,
+                13vw,
+                4.2rem);
+
+        line-height: 0.86;
+
+        letter-spacing: -0.065em;
+
+        word-break: normal;
+        overflow-wrap: normal;
     }
 
     .mission-copy>p {
@@ -355,16 +367,21 @@
         height: auto;
         min-height: 0;
         aspect-ratio: auto;
-        padding: 14px;
+        padding: 12px;
         clip-path: none;
         border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .mission-poster {
         width: 100%;
         height: auto;
-        max-height: 520px;
-        object-fit: contain;
+        max-width: 100%;
+        max-height: none;
+        object-fit: contain !important;
+        object-position: center;
         display: block;
         margin: 0 auto;
     }
@@ -660,6 +677,22 @@
 
     .dept-button {
         min-height: 44px;
+    }
+
+}
+
+
+/* =========================================================
+   NARROW MOBILE OVERRIDES
+   ========================================================= */
+
+@media (max-width: 390px) {
+
+    .mission-copy h3 {
+        font-size:
+            clamp(2.65rem,
+                12.5vw,
+                3.5rem);
     }
 
 }

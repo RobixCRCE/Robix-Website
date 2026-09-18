@@ -12,7 +12,21 @@ export function initHero() {
     return;
   }
 
-  initHero3D();
+  const desktop3D = window.matchMedia("(min-width: 769px)");
+
+  if (desktop3D.matches) {
+    initHero3D();
+  } else {
+    desktop3D.addEventListener(
+      "change",
+      (e) => {
+        if (e.matches) {
+          initHero3D();
+        }
+      },
+      { once: true }
+    );
+  }
 
 
 

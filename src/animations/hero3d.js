@@ -1,13 +1,26 @@
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
+let isHero3DInitialized = false;
+
 export function initHero3D() {
+  if (isHero3DInitialized) {
+    return;
+  }
+
+  const desktop3D = window.matchMedia("(min-width: 769px)");
+  if (!desktop3D.matches) {
+    return;
+  }
+
   const container = document.querySelector("#hero-3d-core");
   const canvas = document.querySelector("#hero-3d-canvas");
 
   if (!container || !canvas) {
     return;
   }
+
+  isHero3DInitialized = true;
 
   // 1. Scene Setup
   const scene = new THREE.Scene();
