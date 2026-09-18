@@ -7,6 +7,7 @@ import "./styles/machines.css";
 import "./styles/missions.css";
 import "./styles/team.css";
 import "./styles/contact.css";
+import "./styles/mobile.css";
 
 
 import {
@@ -43,6 +44,10 @@ import {
   initContact
 } from "./animations/contact.js";
 
+import {
+  ScrollTrigger
+} from "gsap/ScrollTrigger";
+
 document.addEventListener(
   "DOMContentLoaded",
   () => {
@@ -63,5 +68,24 @@ document.addEventListener(
 
     initPreloader();
 
+  }
+);
+
+window.addEventListener(
+  "robix:introComplete",
+  () => {
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
+  },
+  {
+    once: true
+  }
+);
+
+window.addEventListener(
+  "load",
+  () => {
+    ScrollTrigger.refresh();
   }
 );

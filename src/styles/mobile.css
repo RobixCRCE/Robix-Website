@@ -1,0 +1,665 @@
+/* =========================================================
+   ROBIX MOBILE OVERRIDES
+   ========================================================= */
+
+@media (max-width: 768px) {
+
+    /* -----------------------------------------------------
+       GLOBAL SAFETY
+       ----------------------------------------------------- */
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        position: relative;
+    }
+
+    #app,
+    section {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: clip;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    img,
+    video,
+    canvas,
+    iframe {
+        max-width: 100%;
+    }
+
+
+    /* =====================================================
+       MACHINES
+       ===================================================== */
+
+    #machines {
+        min-height: auto;
+        overflow: visible;
+        padding-bottom: 80px;
+    }
+
+    .machines-header {
+        position: relative;
+
+        left: auto;
+        top: auto;
+
+        padding:
+            72px 24px 28px;
+
+        width: 100%;
+        z-index: 5;
+    }
+
+    .machines-header h2 {
+        font-size:
+            clamp(3.4rem,
+                15vw,
+                5rem);
+
+        line-height: 0.82;
+
+        max-width: 100%;
+    }
+
+    .machines-counter {
+        position: relative;
+
+        left: auto;
+        top: auto;
+
+        margin-top: 18px;
+    }
+
+    .machines-viewport {
+        width: 100%;
+        height: auto;
+
+        overflow: visible;
+    }
+
+    .machines-track {
+        width: 100% !important;
+        height: auto !important;
+
+        display: flex;
+        flex-direction: column;
+
+        transform: none !important;
+    }
+
+    .machine-card {
+        flex: none;
+
+        width: 100%;
+        min-height: auto;
+        height: auto;
+
+        display: block;
+
+        padding:
+            24px 24px 70px;
+
+        margin: 0;
+    }
+
+    .machine-info {
+        padding-top: 0;
+        width: 100%;
+        max-width: none;
+    }
+
+    .machine-id {
+        margin-top: 0;
+    }
+
+    .machine-info h3 {
+        font-size:
+            clamp(3.5rem,
+                17vw,
+                5.4rem);
+
+        line-height: 0.84;
+
+        word-break: normal;
+        overflow-wrap: break-word;
+    }
+
+    .machine-type {
+        margin-top: 14px;
+    }
+
+    .machine-description {
+        max-width: 100%;
+
+        margin-top: 28px;
+
+        font-size: 1rem;
+        line-height: 1.65;
+    }
+
+    .machine-specs {
+        width: 100%;
+        max-width: none;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        margin-top: 32px;
+    }
+
+    .spec {
+        min-width: 0;
+        padding: 18px 14px;
+    }
+
+    .machine-visual {
+        width: 100%;
+
+        height: auto;
+        min-height: 430px;
+
+        margin-top: 56px;
+    }
+
+    .machine-image-frame {
+        width: 100%;
+        height: 430px;
+
+        max-width: none;
+
+        margin: 0 auto;
+    }
+
+    .machine-view-image,
+    .machine-image {
+        width: 100%;
+        height: 100%;
+
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .machine-view-controls {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+
+        justify-content: flex-end;
+
+        flex-wrap: nowrap;
+    }
+
+    .machine-view-controls button,
+    .view-mode {
+        padding: 10px 10px;
+        font-size: 8px;
+        min-height: 44px;
+        min-width: 44px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .visual-label-top {
+        top: -28px;
+        left: 0;
+    }
+
+    .visual-label-bottom {
+        bottom: -28px;
+        right: 0;
+    }
+
+
+    /* =====================================================
+       MISSIONS / FIELD RECORDS
+       ===================================================== */
+
+    #missions {
+        min-height: auto;
+        overflow: visible;
+
+        padding-bottom: 80px;
+    }
+
+    .missions-header {
+        position: relative;
+
+        left: auto;
+        top: auto;
+
+        width: 100%;
+
+        padding:
+            72px 24px 18px;
+
+        z-index: 5;
+    }
+
+    .missions-header h2 {
+        font-size:
+            clamp(3.3rem,
+                15vw,
+                5rem);
+
+        line-height: 0.82;
+    }
+
+    .missions-header p {
+        width: 100%;
+        max-width: 420px;
+
+        display: block;
+
+        margin-top: 20px;
+    }
+
+    .mission-counter {
+        position: relative;
+
+        top: auto;
+        right: auto;
+
+        margin:
+            0 24px 30px;
+
+        width:
+            calc(100% - 48px);
+
+        grid-template-columns:
+            auto 1fr auto;
+    }
+
+    .missions-stage {
+        width: 100%;
+        height: auto;
+
+        position: relative;
+    }
+
+    .mission-record {
+        position: relative;
+
+        inset: auto;
+
+        display: block;
+
+        width: 100%;
+        height: auto;
+
+        padding:
+            24px 24px 70px;
+
+        opacity: 1 !important;
+        visibility: visible !important;
+
+        transform: none !important;
+    }
+
+    .mission-copy {
+        width: 100%;
+        max-width: none;
+    }
+
+    .mission-copy h3 {
+        font-size:
+            clamp(3.6rem,
+                16vw,
+                5.2rem);
+
+        line-height: 0.82;
+
+        margin-top: 18px;
+    }
+
+    .mission-copy>p {
+        max-width: 100%;
+
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .mission-data {
+        width: 100%;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        margin-top: 30px;
+    }
+
+    .mission-visual {
+        width: 100%;
+
+        height: auto;
+        min-height: 0;
+
+        margin-top: 40px;
+    }
+
+    .mission-image-frame {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        aspect-ratio: auto;
+        padding: 14px;
+        clip-path: none;
+        border-radius: 4px;
+    }
+
+    .mission-poster {
+        width: 100%;
+        height: auto;
+        max-height: 520px;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .mission-image-label {
+        font-size: 7px;
+    }
+
+    .archive-shutter {
+        display: none !important;
+    }
+
+
+    /* =====================================================
+       CONTACT
+       THIS IS THE IMPORTANT FIX
+       ===================================================== */
+
+    #contact {
+        min-height: auto;
+
+        width: 100%;
+
+        padding:
+            70px 22px 80px;
+
+        overflow: hidden;
+    }
+
+    .contact-header {
+        display: block;
+
+        width: 100%;
+
+        margin-bottom: 52px;
+
+        text-align: left;
+    }
+
+    .contact-header h2 {
+        font-size:
+            clamp(3.3rem,
+                15vw,
+                5rem);
+
+        line-height: 0.9;
+    }
+
+    .contact-system-id {
+        position: relative;
+
+        left: auto;
+        top: auto;
+
+        margin-bottom: 12px;
+    }
+
+    .contact-header-status {
+        position: relative;
+
+        right: auto;
+        top: auto;
+
+        margin-top: 14px;
+    }
+
+    .contact-header-line {
+        margin:
+            18px 0 0;
+    }
+
+
+    /* ---------------------------------------------
+       Turn 3 desktop columns into vertical sections
+       --------------------------------------------- */
+
+    .contact-layout {
+        width: 100%;
+        max-width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 0;
+
+        margin: 0;
+
+        padding: 0;
+    }
+
+    .contact-brand,
+    .contact-location,
+    .contact-form-panel {
+        width: 100%;
+        max-width: 100%;
+
+        min-width: 0;
+
+        padding:
+            0 0 52px;
+    }
+
+    .contact-divider {
+        display: none;
+    }
+
+
+    /* ---------------------------------------------
+       ROBIX BRAND
+       --------------------------------------------- */
+
+    .contact-brand {
+        order: 1;
+    }
+
+    .contact-logo-core {
+        width: 100%;
+        max-width: 330px;
+
+        height: auto;
+        aspect-ratio: 1.65;
+
+        margin:
+            0 auto 28px;
+    }
+
+    .contact-logo {
+        width: 82%;
+        max-width: 280px;
+    }
+
+    .contact-brand-copy {
+        width: 100%;
+        max-width: none;
+
+        margin: 0;
+
+        font-size: 0.95rem;
+        line-height: 1.8;
+    }
+
+    .contact-socials {
+        margin-top: 28px;
+
+        gap: 12px;
+    }
+
+    .contact-socials a {
+        width: 46px;
+        height: 46px;
+    }
+
+
+    /* ---------------------------------------------
+       LOCATION
+       --------------------------------------------- */
+
+    .contact-location {
+        order: 2;
+
+        margin-top: 18px;
+
+        padding-top: 42px;
+
+        border-top:
+            1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .contact-location address {
+        width: 100%;
+
+        word-break: normal;
+        overflow-wrap: anywhere;
+
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+
+    .contact-radar {
+        width: 100%;
+        height: 260px;
+
+        margin-top: 28px;
+    }
+
+    .contact-map-link {
+        width: 100%;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+
+    /* ---------------------------------------------
+       CONTACT FORM
+       --------------------------------------------- */
+
+    .contact-form-panel {
+        order: 3;
+
+        margin-top: 18px;
+
+        padding-top: 42px;
+
+        border-top:
+            1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .form-panel-header {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 8px;
+
+        margin-bottom: 24px;
+    }
+
+    .uplink-status {
+        margin-left: 32px;
+    }
+
+    #robix-contact-form {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 17px;
+    }
+
+    .contact-field-row {
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 17px;
+    }
+
+    .contact-field {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .contact-field input,
+    .contact-field textarea,
+    .contact-field select {
+        display: block;
+
+        width: 100%;
+        max-width: 100%;
+
+        min-width: 0;
+
+        padding:
+            15px 14px;
+
+        /*
+         * 16px is deliberate.
+         * iOS zooms form fields below 16px.
+         */
+        font-size: 16px;
+    }
+
+    .contact-field textarea {
+        min-height: 150px;
+
+        resize: vertical;
+    }
+
+    .contact-transmit {
+        width: 100%;
+        min-width: 0;
+        min-height: 48px;
+
+        grid-template-columns:
+            auto 1fr auto;
+
+        margin-top: 6px;
+    }
+
+    .transmit-label {
+        font-size: 10px;
+    }
+
+    /* ---------------------------------------------
+       TOUCH TARGETS
+       --------------------------------------------- */
+
+    .dept-button {
+        min-height: 44px;
+    }
+
+}

@@ -65,150 +65,106 @@ export function initContact() {
        CONTACT ENTRANCE
        ========================================= */
 
-    gsap.set(
-        ".contact-header",
-        {
-            opacity: 0,
-            y: 25
-        }
-    );
+    const mm = gsap.matchMedia();
 
-
-    gsap.set(
-        ".contact-brand",
-        {
-            opacity: 0,
-            x: -45
-        }
-    );
-
-
-    gsap.set(
-        ".contact-location",
-        {
-            opacity: 0,
-            y: 35
-        }
-    );
-
-
-    gsap.set(
-        ".contact-form-panel",
-        {
-            opacity: 0,
-            x: 45
-        }
-    );
-
-
-    gsap.set(
-        ".contact-divider",
-        {
+    mm.add("(min-width: 769px)", () => {
+        gsap.set(".contact-header", { opacity: 0, y: 25 });
+        gsap.set(".contact-brand", { opacity: 0, x: -45 });
+        gsap.set(".contact-location", { opacity: 0, y: 35 });
+        gsap.set(".contact-form-panel", { opacity: 0, x: 45 });
+        gsap.set(".contact-divider", {
             opacity: 0,
             scaleY: 0,
-            transformOrigin:
-                "50% 50%"
-        }
-    );
-
-
-
-    const tl =
-        gsap.timeline({
-
-            scrollTrigger: {
-
-                trigger:
-                    section,
-
-                start:
-                    "top 65%",
-
-                once:
-                    true
-
-            }
-
+            transformOrigin: "50% 50%"
         });
 
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: section,
+                start: "top 65%",
+                once: true
+            }
+        });
 
-
-    tl.to(
-        ".contact-header",
-        {
+        tl.to(".contact-header", {
             opacity: 1,
             y: 0,
-
             duration: 0.5,
+            ease: "power3.out"
+        });
 
-            ease:
-                "power3.out"
-        }
-    );
-
-
-    tl.to(
-        ".contact-divider",
-        {
+        tl.to(".contact-divider", {
             opacity: 1,
             scaleY: 1,
-
             duration: 0.7,
+            ease: "power3.out"
+        }, "-=.2");
 
-            ease:
-                "power3.out"
-        },
-
-        "-=.2"
-    );
-
-
-    tl.to(
-        ".contact-brand",
-        {
+        tl.to(".contact-brand", {
             opacity: 1,
             x: 0,
-
             duration: 0.65,
+            ease: "power3.out"
+        }, "-=.45");
 
-            ease:
-                "power3.out"
-        },
-
-        "-=.45"
-    );
-
-
-    tl.to(
-        ".contact-location",
-        {
+        tl.to(".contact-location", {
             opacity: 1,
             y: 0,
-
             duration: 0.65,
+            ease: "power3.out"
+        }, "-=.5");
 
-            ease:
-                "power3.out"
-        },
-
-        "-=.5"
-    );
-
-
-    tl.to(
-        ".contact-form-panel",
-        {
+        tl.to(".contact-form-panel", {
             opacity: 1,
             x: 0,
-
             duration: 0.65,
+            ease: "power3.out"
+        }, "-=.5");
+    });
 
-            ease:
-                "power3.out"
-        },
+    mm.add("(max-width: 768px)", () => {
+        gsap.set(".contact-header, .contact-brand, .contact-location, .contact-form-panel", {
+            opacity: 0,
+            y: 20,
+            x: 0
+        });
 
-        "-=.5"
-    );
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: section,
+                start: "top 80%",
+                once: true
+            }
+        });
+
+        tl.to(".contact-header", {
+            opacity: 1,
+            y: 0,
+            duration: 0.45,
+            ease: "power3.out"
+        });
+
+        tl.to(".contact-brand", {
+            opacity: 1,
+            y: 0,
+            duration: 0.45,
+            ease: "power3.out"
+        }, "-=.25");
+
+        tl.to(".contact-location", {
+            opacity: 1,
+            y: 0,
+            duration: 0.45,
+            ease: "power3.out"
+        }, "-=.25");
+
+        tl.to(".contact-form-panel", {
+            opacity: 1,
+            y: 0,
+            duration: 0.45,
+            ease: "power3.out"
+        }, "-=.25");
+    });
 
 
 

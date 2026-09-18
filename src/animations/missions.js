@@ -34,84 +34,103 @@ export function initMissions() {
             ".mission-current"
         );
 
+    const totalEl =
+        document.querySelector(
+            ".mission-total"
+        );
+
 
     if (records.length === 0) {
         return;
     }
 
-
+    if (totalEl) {
+        totalEl.textContent =
+            String(records.length).padStart(2, "0");
+    }
 
     /*
-     * Set starting states.
+     * Preload posters and attach error handlers
      */
-
-    records.forEach(
-        (record, index) => {
-
-            if (index === 0) {
-
-                gsap.set(
-                    record,
-                    {
-                        opacity: 1,
-                        visibility: "visible",
-                        x: 0
-                    }
-                );
-
-            }
-
-            else {
-
-                gsap.set(
-                    record,
-                    {
-                        opacity: 0,
-                        visibility: "hidden",
-                        x: 80
-                    }
-                );
-
-            }
-
+    const posters = section.querySelectorAll(".mission-poster");
+    posters.forEach(img => {
+        if (img.src) {
+            const pre = new Image();
+            pre.src = img.src;
         }
-    );
 
-
-
-    /*
-     * Master pinned archive.
-     */
-
-    const timeline =
-        gsap.timeline({
-
-            scrollTrigger: {
-
-                trigger:
-                    section,
-
-                start:
-                    "top top",
-
-                end:
-                    `+=${records.length * 850}`,
-
-                pin:
-                    true,
-
-                scrub:
-                    1,
-
-                anticipatePin:
-                    1,
-
-                invalidateOnRefresh:
-                    true
-
+        img.addEventListener("error", () => {
+            console.error("ROBIX mission poster failed:", img.src);
+            const frame = img.closest(".mission-image-frame");
+            if (frame) {
+                img.style.display = "none";
+                const fallback = frame.querySelector(".mission-fallback");
+                if (fallback) {
+                    fallback.style.display = "block";
+                }
             }
-
         });
+    });
+
+
+    const mm = gsap.matchMedia();
+
+    mm.add(
+        "(min-width: 769px)",
+        () => {
+            /*
+             * Set starting states.
+             */
+            records.forEach(
+                (record, index) => {
+                    if (index === 0) {
+                        gsap.set(
+                            record,
+                            {
+                                opacity: 1,
+                                visibility: "visible",
+                                x: 0
+                            }
+                        );
+                    }
+                    else {
+                        gsap.set(
+                            record,
+                            {
+                                opacity: 0,
+                                visibility: "hidden",
+                                x: 80
+                            }
+                        );
+                    }
+                }
+            );
+
+            /*
+             * Set initial progress fill.
+             */
+            gsap.set(
+                ".mission-counter-fill",
+                {
+                    width: `${(1 / records.length) * 100}%`
+                }
+            );
+
+            /*
+             * Master pinned archive.
+             */
+            const timeline =
+                gsap.timeline({
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top top",
+                        end: `+=${records.length * 850}`,
+                        pin: true,
+                        scrub: 1,
+                        anticipatePin: 1,
+                        invalidateOnRefresh: true
+                    }
+                });
 
 
 
@@ -289,6 +308,27 @@ export function initMissions() {
 
         );
 
+        /*
+         * Subtle poster entrance animation.
+         */
+        const incomingPoster = incoming.querySelector(".mission-poster");
+        if (incomingPoster) {
+            timeline.fromTo(
+                incomingPoster,
+                {
+                    opacity: 0.85,
+                    scale: 0.975
+                },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.4,
+                    ease: "power3.out"
+                },
+                "<"
+            );
+        }
+
 
 
         /*
@@ -378,6 +418,33 @@ export function initMissions() {
 
     }
 
+    return () => {
+        timeline.kill();
+    };
+
+});
+
+mm.add(
+    "(max-width: 768px)",
+    () => {
+        gsap.set(
+            ".mission-record",
+            {
+                clearProps: "all"
+            }
+        );
+
+        gsap.set(
+            ".archive-shutter",
+            {
+                display: "none"
+            }
+        );
+
+        ScrollTrigger.refresh();
+    }
+);
+
 
 
     /*
@@ -385,19 +452,13 @@ export function initMissions() {
      */
 
     window.addEventListener(
-
         "robix:introComplete",
-
         () => {
-
             ScrollTrigger.refresh();
-
         },
-
         {
             once: true
         }
-
     );
 
 }

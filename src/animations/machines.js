@@ -53,171 +53,160 @@ export function initMachines() {
        HORIZONTAL MACHINE DATABASE
        ========================================= */
 
-    const horizontal =
-        gsap.to(
-
-            track,
-
-            {
-
-                xPercent:
-                    -100 *
-                    (total - 1),
-
-                ease:
-                    "none",
-
-                scrollTrigger: {
-
-                    trigger:
-                        section,
-
-                    start:
-                        "top top",
-
-                    end: () =>
-                        "+=" +
-                        window.innerWidth *
-                        (total - 1),
-
-                    pin:
-                        true,
-
-                    scrub:
-                        1,
-
-                    anticipatePin:
-                        1,
-
-                    invalidateOnRefresh:
-                        true,
+    const mm =
+        gsap.matchMedia();
 
 
-                    onUpdate: self => {
+    mm.add(
+        "(min-width: 769px)",
+        () => {
 
-                        const index =
-                            Math.round(
+            const horizontal =
+                gsap.to(
+                    track,
+                    {
+                        xPercent:
+                            -100 *
+                            (total - 1),
 
-                                self.progress *
-                                (total - 1)
+                        ease: "none",
 
-                            );
+                        scrollTrigger: {
+                            trigger:
+                                section,
 
+                            start:
+                                "top top",
 
-                        counter.textContent =
-                            String(
-                                index + 1
-                            ).padStart(
-                                2,
-                                "0"
-                            );
+                            end: () =>
+                                "+=" +
+                                window.innerWidth *
+                                (total - 1),
 
+                            pin: true,
+
+                            scrub: 1,
+
+                            anticipatePin: 1,
+
+                            invalidateOnRefresh:
+                                true,
+
+                            onUpdate: self => {
+                                if (counter) {
+                                    const index =
+                                        Math.round(
+                                            self.progress *
+                                            (total - 1)
+                                        );
+
+                                    counter.textContent =
+                                        String(
+                                            index + 1
+                                        ).padStart(
+                                            2,
+                                            "0"
+                                        );
+                                }
+                            }
+                        }
                     }
-
-                }
-
-            }
-
-        );
-
-
-
-    /* =========================================
-       SCAN EFFECT FOR EACH MACHINE
-       ========================================= */
-
-    cards.forEach(
-        (card, index) => {
-
-            const scan =
-                card.querySelector(
-                    ".machine-scan"
                 );
 
 
-            if (!scan) {
-                return;
-            }
+            /* =========================================
+               SCAN EFFECT FOR EACH MACHINE (DESKTOP)
+               ========================================= */
 
+            cards.forEach(
+                (card) => {
+                    const scan =
+                        card.querySelector(
+                            ".machine-scan"
+                        );
 
-            gsap.timeline({
+                    if (!scan) {
+                        return;
+                    }
 
-                scrollTrigger: {
+                    gsap.timeline({
+                        scrollTrigger: {
+                            trigger:
+                                card,
 
-                    trigger:
-                        card,
+                            containerAnimation:
+                                horizontal,
 
-                    containerAnimation:
-                        horizontal,
+                            start:
+                                "left center",
 
-                    start:
-                        "left center",
+                            end:
+                                "right center",
 
-                    end:
-                        "right center",
-
-                    toggleActions:
-                        "play none none reverse"
-
+                            toggleActions:
+                                "play none none reverse"
+                        }
+                    })
+                        .fromTo(
+                            scan,
+                            {
+                                opacity: 0,
+                                y: 0
+                            },
+                            {
+                                opacity: 1,
+                                duration: 0.15
+                            }
+                        )
+                        .to(
+                            scan,
+                            {
+                                y: "50vh",
+                                duration: 1.2,
+                                ease: "power1.inOut"
+                            }
+                        )
+                        .to(
+                            scan,
+                            {
+                                opacity: 0,
+                                duration: 0.2
+                            }
+                        );
                 }
+            );
 
-            })
 
-                .fromTo(
+            return () => {
+                horizontal.kill();
+            };
 
-                    scan,
+        }
+    );
 
-                    {
+    mm.add(
+        "(max-width: 768px)",
+        () => {
 
-                        opacity: 0,
+            gsap.set(
+                track,
+                {
+                    clearProps:
+                        "all"
+                }
+            );
 
-                        y: 0
 
-                    },
+            gsap.set(
+                cards,
+                {
+                    clearProps:
+                        "all"
+                }
+            );
 
-                    {
 
-                        opacity: 1,
-
-                        duration: 0.15
-
-                    }
-
-                )
-
-                .to(
-
-                    scan,
-
-                    {
-
-                        y:
-                            "50vh",
-
-                        duration:
-                            1.2,
-
-                        ease:
-                            "power1.inOut"
-
-                    }
-
-                )
-
-                .to(
-
-                    scan,
-
-                    {
-
-                        opacity: 0,
-
-                        duration:
-                            0.2
-
-                    }
-
-                );
+            ScrollTrigger.refresh();
 
         }
     );
