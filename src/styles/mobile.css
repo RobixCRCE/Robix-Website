@@ -81,6 +81,68 @@
 
 
     /* =====================================================
+       WHAT WE DO / OPERATIONS
+       ===================================================== */
+
+    #operations {
+        overflow: hidden;
+    }
+
+    .ops-shell {
+        grid-template-columns: 1fr;
+        padding: 64px 20px 72px;
+        gap: 36px;
+    }
+
+    .operation {
+        left: 6%;
+        width: 88%;
+        max-width: 88%;
+        min-width: 0;
+        z-index: 2;
+    }
+
+    .operation-title,
+    .operation h3 {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        font-size:
+            clamp(
+                2.8rem,
+                12.5vw,
+                4.1rem
+            );
+        line-height: 0.86;
+        letter-spacing: -0.065em;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: normal;
+    }
+
+    .operation p {
+        max-width: 100%;
+    }
+
+    .operation-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .ops-machine {
+        position: absolute;
+        right: -25%;
+        top: 50%;
+        width: 70%;
+        max-width: 70%;
+        opacity: 0.3;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+
+    /* =====================================================
        MACHINES
        ===================================================== */
 
@@ -749,6 +811,27 @@
 
     .department p {
         font-size: 0.72rem;
+    }
+
+    .operation {
+        left: 5%;
+        width: 90%;
+        max-width: 90%;
+    }
+
+    .operation-title,
+    .operation h3 {
+        font-size:
+            clamp(
+                2.45rem,
+                11.2vw,
+                3.2rem
+            );
+    }
+
+    .operation-tags span {
+        padding: 6px 9px;
+        font-size: 7.5px;
     }
 
 }
