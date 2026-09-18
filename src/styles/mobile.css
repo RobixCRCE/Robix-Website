@@ -498,6 +498,41 @@
 
 
     /* =====================================================
+       TEAM / DEPARTMENTS
+       ===================================================== */
+
+    .department-panel-header,
+    .department-panel-header > div {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .department-panel-header h3 {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        font-size:
+            clamp(
+                2.35rem,
+                10.5vw,
+                3.6rem
+            );
+        line-height: 0.88;
+        letter-spacing: -0.06em;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: normal;
+    }
+
+    .department-panel-header > p {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 14px;
+    }
+
+
+    /* =====================================================
        CONTACT
        THIS IS THE IMPORTANT FIX
        ===================================================== */
@@ -832,6 +867,15 @@
     .operation-tags span {
         padding: 6px 9px;
         font-size: 7.5px;
+    }
+
+    .department-panel-header h3 {
+        font-size:
+            clamp(
+                2.05rem,
+                9.4vw,
+                2.8rem
+            );
     }
 
 }
