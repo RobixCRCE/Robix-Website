@@ -129,6 +129,9 @@
 
   padding: 18px;
 
+  display: flex;
+  flex-direction: column;
+
   border:
     1px solid rgba(255, 255, 255, 0.08);
 
@@ -151,6 +154,8 @@
   display: grid;
 
   place-items: center;
+
+  overflow: hidden;
 
   background:
     #090909;
@@ -175,6 +180,7 @@
   height: 100%;
 
   object-fit: cover;
+  object-position: center top;
 }
 
 
@@ -485,6 +491,8 @@
 
   place-items: center;
 
+  overflow: hidden;
+
   min-height: 280px;
 
   background: #080808;
@@ -509,6 +517,7 @@
   height: 100%;
 
   object-fit: cover;
+  object-position: center top;
 }
 
 
@@ -606,6 +615,8 @@
 
   place-items: center;
 
+  overflow: hidden;
+
   background: #080808;
 
   color: #303030;
@@ -625,6 +636,7 @@
   height: 100%;
 
   object-fit: cover;
+  object-position: center top;
 }
 
 
@@ -635,6 +647,72 @@
   font-size: 0.85rem;
 
   font-weight: 500;
+}
+
+.member-role {
+  display: block;
+  font-family:
+    "Courier New",
+    monospace;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  color: #ff3030;
+  margin: 2px 2px 6px;
+}
+
+.member-socials {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+  color: #888;
+  text-decoration: none;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.social-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+.social-link:hover {
+  color: #ffffff;
+  border-color: rgba(255, 48, 48, 0.6);
+  background: rgba(255, 48, 48, 0.12);
+  box-shadow: 0 0 10px rgba(255, 48, 48, 0.35);
+  transform: translateY(-2px);
+}
+
+.member-card .member-socials {
+  margin-top: 8px;
+  gap: 6px;
+}
+
+.member-card .social-link {
+  width: 24px;
+  height: 24px;
+}
+
+.member-card .social-link svg {
+  width: 12px;
+  height: 12px;
 }
 
 
