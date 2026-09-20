@@ -15,27 +15,30 @@ export function initMachines() {
     const section =
         document.querySelector("#machines");
 
+    if (!section) return;
+
+
+    const viewport =
+        section.querySelector(
+            ".machines-viewport"
+        );
+
 
     const track =
-        document.querySelector(
+        section.querySelector(
             ".machines-track"
         );
 
 
     const cards =
         gsap.utils.toArray(
-            ".machine-card"
-        );
-
-
-    const counter =
-        document.querySelector(
-            ".machine-current"
+            ".machine-card",
+            section
         );
 
 
     if (
-        !section ||
+        !viewport ||
         !track ||
         cards.length === 0
     ) {
@@ -43,20 +46,108 @@ export function initMachines() {
     }
 
 
+    /* =========================================
+       MACHINE COUNT
+       ========================================= */
 
-    const total =
+    const totalMachines =
         cards.length;
 
-    const totalEl =
-        document.querySelector(
-            ".machine-total"
+
+    const currentCounter =
+        section.querySelector(
+            "[data-machine-current], .machine-current"
         );
 
-    if (totalEl) {
-        totalEl.textContent =
-            String(total).padStart(2, "0");
+
+    const totalCounter =
+        section.querySelector(
+            "[data-machine-total], .machine-total"
+        );
+
+
+    if (currentCounter) {
+
+        currentCounter.textContent =
+            "01";
+
     }
 
+
+    if (totalCounter) {
+
+        totalCounter.textContent =
+            String(
+                totalMachines
+            ).padStart(
+                2,
+                "0"
+            );
+
+    }
+
+
+    /* =========================================
+       REAL HORIZONTAL SCROLL DISTANCE
+       ========================================= */
+
+    const getScrollDistance =
+        () =>
+            Math.max(
+                0,
+                track.scrollWidth -
+                viewport.clientWidth
+            );
+    // old code  
+    // if (
+    //     !viewport ||
+    //     !track ||
+    //     cards.length === 0
+    // ) {
+    //     return;
+    // }
+
+
+    // const totalMachines =
+    //     cards.length;
+
+
+    // const counter =
+    //     document.querySelector(
+    //         ".machine-current"
+    //     );
+
+
+    // if (
+    //     !section ||
+    //     !track ||
+    //     cards.length === 0
+    // ) {
+    //     return;
+    // }
+
+
+
+    // const total =
+    //     cards.length;
+
+    // const totalEl =
+    //     document.querySelector(
+    //         ".machine-total"
+    //     );
+
+    // if (totalEl) {
+    //     totalEl.textContent =
+    //         String(total).padStart(2, "0");
+    // }
+    window.addEventListener(
+        "load",
+        () => {
+
+            ScrollTrigger.refresh();
+
+        }
+    );
 
 
     /* =========================================
@@ -71,92 +162,144 @@ export function initMachines() {
         "(min-width: 769px)",
         () => {
 
+            /* =========================================
+               HORIZONTAL MACHINE DATABASE
+               ========================================= */
+
             const horizontal =
                 gsap.to(
                     track,
                     {
-                        xPercent:
-                            -100 *
-                            (total - 1),
+                        /*
+                         * Move exactly to the end
+                         * of the real machine track.
+                         */
+                        x: () =>
+                            -getScrollDistance(),
 
-                        ease: "none",
+                        ease:
+                            "none",
 
                         scrollTrigger: {
+
                             trigger:
                                 section,
 
                             start:
                                 "top top",
 
+                            /*
+                             * IMPORTANT:
+                             * Scroll distance must equal
+                             * horizontal movement distance.
+                             *
+                             * This removes the blank scroll
+                             * after the final machine.
+                             */
                             end: () =>
                                 "+=" +
-                                window.innerWidth *
-                                (total - 1),
+                                getScrollDistance(),
 
-                            pin: true,
+                            pin:
+                                true,
 
-                            scrub: 1,
+                            scrub:
+                                1,
 
-                            anticipatePin: 1,
+                            anticipatePin:
+                                1,
 
                             invalidateOnRefresh:
                                 true,
 
-                            onUpdate: self => {
-                                if (counter) {
+
+                            /* =============================
+                               MACHINE COUNTER
+                               ============================= */
+
+                            onUpdate:
+                                self => {
+
+                                    if (
+                                        !currentCounter
+                                    ) {
+                                        return;
+                                    }
+
+
                                     const index =
-                                        Math.round(
-                                            self.progress *
-                                            (total - 1)
+                                        Math.min(
+                                            totalMachines - 1,
+
+                                            Math.round(
+                                                self.progress *
+                                                (
+                                                    totalMachines - 1
+                                                )
+                                            )
                                         );
 
-                                    counter.textContent =
+
+                                    currentCounter.textContent =
                                         String(
                                             index + 1
                                         ).padStart(
                                             2,
                                             "0"
                                         );
+
                                 }
-                            }
+
                         }
+
                     }
                 );
 
 
+
             /* =========================================
-               SCAN EFFECT FOR EACH MACHINE (DESKTOP)
+               SCAN EFFECT FOR EACH MACHINE
                ========================================= */
 
             cards.forEach(
-                (card) => {
+                card => {
+
                     const scan =
                         card.querySelector(
                             ".machine-scan"
                         );
 
+
                     if (!scan) {
                         return;
                     }
 
-                    gsap.timeline({
-                        scrollTrigger: {
-                            trigger:
-                                card,
 
-                            containerAnimation:
-                                horizontal,
+                    gsap.timeline(
+                        {
 
-                            start:
-                                "left center",
+                            scrollTrigger: {
 
-                            end:
-                                "right center",
+                                trigger:
+                                    card,
 
-                            toggleActions:
-                                "play none none reverse"
+                                containerAnimation:
+                                    horizontal,
+
+                                start:
+                                    "left center",
+
+                                end:
+                                    "right center",
+
+                                toggleActions:
+                                    "play none none reverse"
+
+                            }
+
                         }
-                    })
+                    )
+
                         .fromTo(
                             scan,
                             {
@@ -165,30 +308,61 @@ export function initMachines() {
                             },
                             {
                                 opacity: 1,
-                                duration: 0.15
+
+                                duration:
+                                    0.15
                             }
                         )
+
                         .to(
                             scan,
                             {
-                                y: "50vh",
-                                duration: 1.2,
-                                ease: "power1.inOut"
+                                y:
+                                    "50vh",
+
+                                duration:
+                                    1.2,
+
+                                ease:
+                                    "power1.inOut"
                             }
                         )
+
                         .to(
                             scan,
                             {
-                                opacity: 0,
-                                duration: 0.2
+                                opacity:
+                                    0,
+
+                                duration:
+                                    0.2
                             }
                         );
+
                 }
             );
 
 
+
+            /* =========================================
+               CLEANUP
+               ========================================= */
+
             return () => {
+
+                if (
+                    horizontal.scrollTrigger
+                ) {
+
+                    horizontal
+                        .scrollTrigger
+                        .kill();
+
+                }
+
+
                 horizontal.kill();
+
             };
 
         }
