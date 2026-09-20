@@ -47,6 +47,16 @@ export function initMachines() {
     const total =
         cards.length;
 
+    const totalEl =
+        document.querySelector(
+            ".machine-total"
+        );
+
+    if (totalEl) {
+        totalEl.textContent =
+            String(total).padStart(2, "0");
+    }
+
 
 
     /* =========================================

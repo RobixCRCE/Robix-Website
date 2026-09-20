@@ -108,11 +108,9 @@
         max-width: 100%;
         margin: 0;
         font-size:
-            clamp(
-                2.8rem,
+            clamp(2.8rem,
                 12.5vw,
-                4.1rem
-            );
+                4.1rem);
         line-height: 0.86;
         letter-spacing: -0.065em;
         white-space: normal;
@@ -502,7 +500,7 @@
        ===================================================== */
 
     .department-panel-header,
-    .department-panel-header > div {
+    .department-panel-header>div {
         width: 100%;
         max-width: 100%;
         min-width: 0;
@@ -513,11 +511,9 @@
         max-width: 100%;
         margin: 0;
         font-size:
-            clamp(
-                2.35rem,
+            clamp(2.35rem,
                 10.5vw,
-                3.6rem
-            );
+                3.6rem);
         line-height: 0.88;
         letter-spacing: -0.06em;
         white-space: normal;
@@ -525,7 +521,7 @@
         overflow-wrap: normal;
     }
 
-    .department-panel-header > p {
+    .department-panel-header>p {
         width: 100%;
         max-width: 100%;
         margin-top: 14px;
@@ -857,11 +853,9 @@
     .operation-title,
     .operation h3 {
         font-size:
-            clamp(
-                2.45rem,
+            clamp(2.45rem,
                 11.2vw,
-                3.2rem
-            );
+                3.2rem);
     }
 
     .operation-tags span {
@@ -871,11 +865,69 @@
 
     .department-panel-header h3 {
         font-size:
-            clamp(
-                2.05rem,
+            clamp(2.05rem,
                 9.4vw,
-                2.8rem
-            );
+                2.8rem);
     }
 
+    /* =========================================================
+   MACHINES — MOBILE VIEW MODE CONTROLS
+   ========================================================= */
+
+    @media (max-width: 768px) {
+
+        .machine-image-frame {
+            position: relative;
+            overflow: hidden;
+        }
+
+
+        .machine-view-controls {
+            position: absolute;
+
+            left: 16px !important;
+            right: 16px !important;
+            bottom: 16px !important;
+
+            width: auto !important;
+            max-width: none;
+
+            transform: none !important;
+
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            gap: 14px;
+
+            z-index: 30;
+
+            overflow: visible;
+        }
+
+
+        .view-mode {
+            flex: 0 0 auto;
+
+            min-width: 0;
+
+            margin: 0;
+            padding: 8px 4px;
+
+            border: 0;
+
+            white-space: nowrap;
+
+            font-size: 8px;
+            line-height: 1;
+
+            letter-spacing: 0.12em;
+        }
+
+
+        .view-mode:first-child {
+            margin-left: 0;
+        }
+
+    }
 }
