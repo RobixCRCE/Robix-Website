@@ -1,464 +1,550 @@
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import {
-    ScrollTrigger
-} from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
+const missions = [
+    {
+        title: "AUTOMATION EXPO",
+        label: "MISSION // 01",
+        file: "FILE // 001",
+        type: "ROBIX HOSTED EVENT",
+        description: "A ROBIX-hosted technical event in Mumbai, created to bring participants together around robotics, engineering and automation.",
+        year: "2025",
+        location: "MUMBAI",
+        host: "ROBIX",
+        status: "ARCHIVED",
+        poster: "/Posters_for_events/automation%20expo.jpeg"
+    },
+    {
+        title: "ROBORIFT",
+        label: "MISSION // 02",
+        file: "FILE // 002",
+        type: "ROBIX HOSTED EVENT",
+        description: "A ROBIX-hosted event in Mumbai focused on hands-on robotics engagement, technical challenge and applied innovation.",
+        year: "2025",
+        location: "MUMBAI",
+        host: "ROBIX",
+        status: "ARCHIVED",
+        poster: "/Posters_for_events/Roborift%202.0%20Poster_page-0001.jpg"
+    },
+    {
+        title: "ROBOTHON",
+        label: "MISSION // 03",
+        file: "FILE // 003",
+        type: "ROBIX HOSTED EVENT",
+        description: "A ROBIX-hosted robotics event in Mumbai designed around competition, creative problem-solving and engineering execution.",
+        year: "2025",
+        location: "MUMBAI",
+        host: "ROBIX",
+        status: "ARCHIVED",
+        poster: "/Posters_for_events/Robothon.jpeg"
+    },
+    {
+        title: "IDEASPARK",
+        label: "MISSION // 04",
+        file: "FILE // 004",
+        type: "ROBIX HOSTED EVENT",
+        description: "A ROBIX-hosted innovation event in Mumbai bringing students together to ideate, build and present technical solutions.",
+        year: "2026",
+        location: "MUMBAI",
+        host: "ROBIX",
+        status: "ARCHIVED",
+        poster: "/Posters_for_events/idea%20Spark.jpeg"
+    },
+    {
+        title: "IDEASPARK 2.0",
+        label: "MISSION // 05",
+        file: "FILE // 005",
+        type: "ROBIX HOSTED EVENT",
+        description: "The next evolution of the IdeaSpark format, hosted by ROBIX in Mumbai to push innovation, teamwork and practical technical thinking.",
+        year: "2026",
+        location: "MUMBAI",
+        host: "ROBIX",
+        status: "ARCHIVED",
+        poster: "/Posters_for_events/ideaspark20.jpeg"
+    }
+];
 
-gsap.registerPlugin(
-    ScrollTrigger
-);
+const CYBER_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
+// Active interval tracking to prevent overlapping scrambles
+const activeDecryptIntervals = new Map();
 
-export function initMissions() {
+function runCybertronianDecrypt(
+    element,
+    finalText,
+    {
+        duration = 500,
+        steps = 12,
+        tempClass = "cybertronian-temp"
+    } = {}
+) {
+    if (!element) return;
 
-    const section =
-        document.querySelector(
-            "#missions"
-        );
+    if (activeDecryptIntervals.has(element)) {
+        clearInterval(activeDecryptIntervals.get(element));
+        activeDecryptIntervals.delete(element);
+    }
 
-
-    if (!section) {
+    const originalText = finalText || "";
+    const maxLength = originalText.length;
+    if (maxLength === 0) {
+        element.textContent = "";
+        element.classList.remove(tempClass);
         return;
     }
 
+    const intervalDuration = duration / steps;
+    let iteration = 0;
 
-    const records =
-        gsap.utils.toArray(
-            ".mission-record"
-        );
+    element.classList.add(tempClass);
 
+    const interval = setInterval(() => {
+        let output = "";
 
-    const current =
-        document.querySelector(
-            ".mission-current"
-        );
-
-    const totalEl =
-        document.querySelector(
-            ".mission-total"
-        );
-
-
-    if (records.length === 0) {
-        return;
-    }
-
-    if (totalEl) {
-        totalEl.textContent =
-            String(records.length).padStart(2, "0");
-    }
-
-    /*
-     * Preload posters and attach error handlers
-     */
-    const posters = section.querySelectorAll(".mission-poster");
-    posters.forEach(img => {
-        if (img.src) {
-            const pre = new Image();
-            pre.src = img.src;
+        for (let i = 0; i < maxLength; i++) {
+            if (i < iteration) {
+                output += originalText[i] || "";
+            } else if (originalText[i] === " ") {
+                output += " ";
+            } else if (originalText[i] === "\n") {
+                output += "\n";
+            } else {
+                output += CYBER_CHARS[
+                    Math.floor(Math.random() * CYBER_CHARS.length)
+                ];
+            }
         }
 
-        img.addEventListener("error", () => {
-            console.error("ROBIX mission poster failed:", img.src);
-            const frame = img.closest(".mission-image-frame");
-            if (frame) {
-                img.style.display = "none";
-                const fallback = frame.querySelector(".mission-fallback");
-                if (fallback) {
-                    fallback.style.display = "block";
+        element.textContent = output;
+
+        iteration += maxLength / steps;
+
+        if (iteration >= maxLength) {
+            clearInterval(interval);
+            activeDecryptIntervals.delete(element);
+            element.textContent = originalText;
+            element.classList.remove(tempClass);
+        }
+    }, intervalDuration);
+
+    activeDecryptIntervals.set(element, interval);
+}
+
+export function initMissions() {
+    const section = document.querySelector("#missions");
+    if (!section) return;
+
+    // Cache elements
+    const posterStage = section.querySelector(".mission-poster-stage");
+    const posterCurrent = section.querySelector(".mission-poster-current");
+    const posterNext = section.querySelector(".mission-poster-next");
+    const scanner = section.querySelector(".mission-scanner");
+
+    if (!posterCurrent || !posterNext || !scanner) return;
+
+    const currentCounter = section.querySelector("[data-mission-current], .mission-current");
+    const totalCounter = section.querySelector("[data-mission-total], .mission-total");
+    const progressBar = section.querySelector(".mission-counter-fill");
+
+    const missionLabel = section.querySelector(".mission-label, .mission-id");
+    const missionType = section.querySelector(".mission-type");
+    const missionTitle = section.querySelector(".mission-title") || section.querySelector(".mission-copy h3");
+    const missionDescription = section.querySelector(".mission-description") || section.querySelector(".mission-copy > p");
+    const missionYear = section.querySelector(".mission-year") || section.querySelector(".mission-data > div:nth-child(1) strong");
+    const missionLocation = section.querySelector(".mission-location") || section.querySelector(".mission-data > div:nth-child(2) strong");
+    const missionHost = section.querySelector(".mission-host") || section.querySelector(".mission-data > div:nth-child(3) strong");
+    const missionStatus = section.querySelector(".mission-status") || section.querySelector(".mission-data > div:nth-child(4) strong");
+    const missionFileLabel = section.querySelector(".label-b");
+
+    // Set total counter once
+    if (totalCounter) {
+        totalCounter.textContent = String(missions.length).padStart(2, "0");
+    }
+
+    // Preload posters to eliminate image flash
+    missions.forEach(mission => {
+        if (!mission.poster) return;
+        const img = new Image();
+        img.src = mission.poster;
+    });
+
+    // State
+    let activeMissionIndex = 0;
+    let targetMissionIndex = 0;
+    let missionTransition = null;
+    let isTransitioning = false;
+
+    function triggerMissionDecrypt(mission, nextIndex) {
+        if (!mission) return;
+
+        runCybertronianDecrypt(
+            missionLabel,
+            `MISSION // ${String(nextIndex + 1).padStart(2, "0")}`,
+            { duration: 260, steps: 8 }
+        );
+
+        runCybertronianDecrypt(
+            missionType,
+            mission.type,
+            { duration: 280, steps: 8 }
+        );
+
+        runCybertronianDecrypt(
+            missionTitle,
+            mission.title.replace(" ", "\n"),
+            { duration: 800, steps: 16 }
+        );
+
+        runCybertronianDecrypt(
+            missionDescription,
+            mission.description,
+            { duration: 950, steps: 18 }
+        );
+
+        runCybertronianDecrypt(
+            missionYear,
+            String(mission.year),
+            { duration: 600, steps: 10 }
+        );
+
+        runCybertronianDecrypt(
+            missionLocation,
+            mission.location,
+            { duration: 220, steps: 6 }
+        );
+
+        runCybertronianDecrypt(
+            missionHost,
+            mission.host || "ROBIX",
+            { duration: 220, steps: 6 }
+        );
+
+        runCybertronianDecrypt(
+            missionStatus,
+            mission.status || "ARCHIVED",
+            { duration: 240, steps: 6 }
+        );
+    }
+
+    // Direct content update (counters, progress, file label)
+    function setMissionContent(index) {
+        const mission = missions[index];
+        if (!mission) return;
+
+        if (missionFileLabel) {
+            missionFileLabel.textContent = mission.file || `FILE // ${String(index + 1).padStart(3, "0")}`;
+        }
+
+        if (currentCounter) {
+            currentCounter.textContent = String(index + 1).padStart(2, "0");
+        }
+
+        if (progressBar) {
+            gsap.to(progressBar, {
+                width: `${((index + 1) / missions.length) * 100}%`,
+                duration: 0.25,
+                ease: "power2.out"
+            });
+        }
+    }
+
+    // Set initial text
+    function setInitialContent() {
+        const mission = missions[0];
+        if (!mission) return;
+
+        if (missionLabel) missionLabel.textContent = `MISSION // 01`;
+        if (missionType) missionType.textContent = mission.type;
+        if (missionTitle) missionTitle.textContent = mission.title.replace(" ", "\n");
+        if (missionDescription) missionDescription.textContent = mission.description;
+        if (missionYear) missionYear.textContent = mission.year;
+        if (missionLocation) missionLocation.textContent = mission.location;
+        if (missionHost) missionHost.textContent = mission.host || "ROBIX";
+        if (missionStatus) missionStatus.textContent = mission.status || "ARCHIVED";
+        if (missionFileLabel) missionFileLabel.textContent = mission.file || "FILE // 001";
+        if (currentCounter) currentCounter.textContent = "01";
+        if (progressBar) gsap.set(progressBar, { width: `${(1 / missions.length) * 100}%` });
+    }
+
+    // Initialize first event
+    setInitialContent();
+    posterCurrent.src = missions[0].poster;
+    posterCurrent.alt = `${missions[0].title} ${missions[0].year} poster`;
+    posterNext.src = missions[0].poster;
+    posterNext.alt = `${missions[0].title} ${missions[0].year} poster`;
+    activeMissionIndex = 0;
+    targetMissionIndex = 0;
+
+    gsap.set(posterNext, {
+        opacity: 1,
+        zIndex: 1
+    });
+
+    gsap.set(posterCurrent, {
+        clipPath: "inset(0% 0 0 0)",
+        opacity: 1,
+        zIndex: 2
+    });
+
+    gsap.set(scanner, {
+        opacity: 0,
+        y: 0
+    });
+
+    // Zero-gap Scanner Transition
+    function showMission(nextIndex) {
+        if (nextIndex === activeMissionIndex || isTransitioning || !missions[nextIndex]) {
+            return;
+        }
+
+        isTransitioning = true;
+        const nextMission = missions[nextIndex];
+
+        if (missionTransition) {
+            missionTransition.kill();
+        }
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (prefersReducedMotion) {
+            missionTransition = gsap.timeline({
+                defaults: {
+                    overwrite: "auto"
+                },
+                onComplete: () => {
+                    posterCurrent.src = nextMission.poster;
+                    posterCurrent.alt = `${nextMission.title} ${nextMission.year} poster`;
+                    gsap.set(posterCurrent, { opacity: 1, clipPath: "none" });
+                    gsap.set(posterNext, { opacity: 0, clipPath: "none" });
+                    activeMissionIndex = nextIndex;
+                    isTransitioning = false;
+                    if (targetMissionIndex !== activeMissionIndex) {
+                        showMission(targetMissionIndex);
+                    }
+                }
+            });
+
+            missionTransition
+                .to(posterCurrent, { opacity: 0, duration: 0.22, ease: "power1.out" })
+                .add(() => {
+                    setMissionContent(nextIndex);
+                    if (missionLabel) missionLabel.textContent = `MISSION // ${String(nextIndex + 1).padStart(2, "0")}`;
+                    if (missionType) missionType.textContent = nextMission.type;
+                    if (missionTitle) missionTitle.textContent = nextMission.title.replace(" ", "\n");
+                    if (missionDescription) missionDescription.textContent = nextMission.description;
+                    if (missionYear) missionYear.textContent = nextMission.year;
+                    if (missionLocation) missionLocation.textContent = nextMission.location;
+                    if (missionHost) missionHost.textContent = nextMission.host || "ROBIX";
+                    if (missionStatus) missionStatus.textContent = nextMission.status || "ARCHIVED";
+                    posterNext.src = nextMission.poster;
+                    posterNext.alt = `${nextMission.title} ${nextMission.year} poster`;
+                })
+                .to(posterNext, { opacity: 1, duration: 0.22, ease: "power1.in" });
+            return;
+        }
+
+        /*
+         * Zero-gap wipe:
+         * 1. Prime next poster underneath current poster before animation begins.
+         */
+        posterNext.src = nextMission.poster;
+        posterNext.alt = `${nextMission.title} ${nextMission.year} poster`;
+
+        gsap.set(posterNext, {
+            opacity: 1,
+            zIndex: 1
+        });
+
+        gsap.set(posterCurrent, {
+            clipPath: "inset(0% 0 0 0)",
+            opacity: 1,
+            zIndex: 2
+        });
+
+        gsap.set(scanner, {
+            opacity: 1,
+            y: 0
+        });
+
+        const stageHeight = (posterStage && posterStage.offsetHeight) ? posterStage.offsetHeight : 520;
+
+        missionTransition = gsap.timeline({
+            defaults: {
+                overwrite: "auto"
+            },
+            onComplete: () => {
+                posterCurrent.src = nextMission.poster;
+                posterCurrent.alt = `${nextMission.title} ${nextMission.year} poster`;
+
+                gsap.set(posterCurrent, {
+                    clipPath: "inset(0% 0 0 0)",
+                    opacity: 1,
+                    zIndex: 2
+                });
+
+                gsap.set(posterNext, {
+                    opacity: 1,
+                    zIndex: 1
+                });
+
+                gsap.set(scanner, {
+                    opacity: 0,
+                    y: 0
+                });
+
+                activeMissionIndex = nextIndex;
+                isTransitioning = false;
+
+                if (targetMissionIndex !== activeMissionIndex) {
+                    showMission(targetMissionIndex);
                 }
             }
         });
-    });
 
+        // 1. Dim current info slightly
+        missionTransition.to(
+            [
+                missionType,
+                missionDescription,
+                missionYear,
+                missionLocation,
+                missionHost,
+                missionStatus
+            ].filter(Boolean),
+            {
+                opacity: 0.3,
+                y: -4,
+                duration: 0.12,
+                stagger: 0.01,
+                ease: "power1.out"
+            },
+            0
+        );
 
+        missionTransition.to(
+            missionTitle,
+            {
+                opacity: 0.18,
+                y: -10,
+                duration: 0.14,
+                ease: "power2.in"
+            },
+            0
+        );
+
+        // 2. Scanner sweeps down
+        missionTransition.to(
+            scanner,
+            {
+                y: stageHeight,
+                duration: 0.9,
+                ease: "none"
+            },
+            0.08
+        );
+
+        // 3. Current poster wipes away from top to bottom (revealing next poster underneath)
+        missionTransition.to(
+            posterCurrent,
+            {
+                clipPath: "inset(100% 0 0 0)",
+                duration: 0.9,
+                ease: "none"
+            },
+            0.08
+        );
+
+        // 4. Midway through wipe (0.22s): update data and trigger Cybertronian decrypt
+        missionTransition.add(() => {
+            setMissionContent(nextIndex);
+            triggerMissionDecrypt(nextMission, nextIndex);
+        }, 0.42);
+
+        // 5. Bring new text back in smoothly
+        missionTransition.fromTo(
+            missionTitle,
+            {
+                opacity: 0,
+                y: 16
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            },
+            0.48
+        );
+
+        missionTransition.fromTo(
+            [
+                missionType,
+                missionDescription,
+                missionYear,
+                missionLocation,
+                missionHost,
+                missionStatus
+            ].filter(Boolean),
+            {
+                opacity: 0,
+                y: 10
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.42,
+                stagger: 0.05,
+                ease: "power2.out"
+            },
+            0.55
+        );
+    }
+
+    // MatchMedia: Desktop pinning vs Mobile natural vertical flow
     const mm = gsap.matchMedia();
 
-    mm.add(
-        "(min-width: 769px)",
-        () => {
-            /*
-             * Set starting states.
-             */
-            records.forEach(
-                (record, index) => {
-                    if (index === 0) {
-                        gsap.set(
-                            record,
-                            {
-                                opacity: 1,
-                                visibility: "visible",
-                                x: 0
-                            }
-                        );
-                    }
-                    else {
-                        gsap.set(
-                            record,
-                            {
-                                opacity: 0,
-                                visibility: "hidden",
-                                x: 80
-                            }
-                        );
-                    }
+    mm.add("(min-width: 769px)", () => {
+        const trigger = ScrollTrigger.create({
+            trigger: section,
+            start: "top top",
+            end: () => `+=${missions.length * 800}`,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: self => {
+                const nextIndex = Math.min(
+                    missions.length - 1,
+                    Math.round(self.progress * (missions.length - 1))
+                );
+                targetMissionIndex = nextIndex;
+                if (nextIndex !== activeMissionIndex && !isTransitioning) {
+                    showMission(nextIndex);
                 }
-            );
-
-            /*
-             * Set initial progress fill.
-             */
-            gsap.set(
-                ".mission-counter-fill",
-                {
-                    width: `${(1 / records.length) * 100}%`
-                }
-            );
-
-            /*
-             * Master pinned archive.
-             */
-            const timeline =
-                gsap.timeline({
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top top",
-                        end: `+=${records.length * 850}`,
-                        pin: true,
-                        scrub: 1,
-                        anticipatePin: 1,
-                        invalidateOnRefresh: true
-                    }
-                });
-
-
-
-    /*
-     * Transition through each mission.
-     */
-
-    for (
-        let i = 0;
-        i < records.length - 1;
-        i++
-    ) {
-
-        const outgoing =
-            records[i];
-
-
-        const incoming =
-            records[i + 1];
-
-
-        const label =
-            `mission-${i}`;
-
-
-
-        /*
-         * Close archive shutters.
-         */
-
-        timeline.to(
-            ".shutter-top",
-            {
-                yPercent: -100,
-                duration: 0.28,
-                ease: "power4.out"
             }
-        );
+        });
 
-        timeline.to(
-            ".shutter-bottom",
-            {
-                yPercent: 100,
-                duration: 0.28,
-                ease: "power4.out"
-            },
-            "<"
-        );
-
-
-
-        /*
-         * Swap records while covered.
-         */
-
-        timeline.set(
-
-            outgoing,
-
-            {
-
-                opacity: 0,
-
-                visibility:
-                    "hidden",
-
-                x: -80
-
+        return () => {
+            if (missionTransition) {
+                missionTransition.kill();
             }
-
-        );
-
-
-        timeline.set(
-
-            incoming,
-
-            {
-
-                opacity: 1,
-
-                visibility:
-                    "visible",
-
-                x: 80
-
-            }
-
-        );
-
-
-
-        /*
-         * Update counter.
-         */
-
-        timeline.call(
-            () => {
-
-                current.textContent =
-                    String(i + 2)
-                        .padStart(
-                            2,
-                            "0"
-                        );
-
-            }
-        );
-
-
-
-        /*
-         * Open shutters.
-         */
-
-        timeline.to(
-
-            ".shutter-top",
-
-            {
-
-                yPercent: 0,
-
-                duration: 0.28,
-
-                ease:
-                    "power4.out"
-
-            }
-
-        );
-
-
-        timeline.to(
-
-            ".shutter-bottom",
-
-            {
-
-                yPercent: 0,
-
-                duration: 0.28,
-
-                ease:
-                    "power4.out"
-
-            },
-
-            "<"
-
-        );
-
-
-
-        /*
-         * Deploy new record.
-         */
-
-        timeline.to(
-
-            incoming,
-
-            {
-
-                x: 0,
-
-                duration: 0.38,
-
-                ease:
-                    "power3.out"
-
-            },
-
-            "<"
-
-        );
-
-        /*
-         * Subtle poster entrance animation.
-         */
-        const incomingPoster = incoming.querySelector(".mission-poster");
-        if (incomingPoster) {
-            timeline.fromTo(
-                incomingPoster,
-                {
-                    opacity: 0.85,
-                    scale: 0.975
-                },
-                {
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.4,
-                    ease: "power3.out"
-                },
-                "<"
-            );
-        }
-
-
-
-        /*
-         * Progress bar.
-         */
-
-        timeline.to(
-
-            ".mission-counter-fill",
-
-            {
-
-                width:
-                    `${((i + 2) / records.length) * 100}%`,
-
-                duration:
-                    0.25
-
-            },
-
-            "<"
-
-        );
-
-
-
-        /*
-         * Scan newly loaded image.
-         */
-
-        const scan =
-            incoming.querySelector(
-                ".mission-scan"
-            );
-
-
-        if (scan) {
-
-            timeline.fromTo(
-
-                scan,
-
-                {
-
-                    opacity: 0,
-
-                    y: 0
-
-                },
-
-                {
-
-                    opacity: 1,
-
-                    y:
-                        "44vh",
-
-                    duration:
-                        0.62,
-
-                    ease:
-                        "power1.inOut"
-
-                },
-
-                "<+.05"
-
-            );
-
-
-            timeline.to(
-
-                scan,
-
-                {
-
-                    opacity: 0,
-
-                    duration:
-                        0.12
-
-                }
-
-            );
-
-        }
-
-    }
-
-    return () => {
-        timeline.kill();
-    };
-
-});
-
-mm.add(
-    "(max-width: 768px)",
-    () => {
-        gsap.set(
-            ".mission-record",
-            {
-                clearProps: "all"
-            }
-        );
-
-        gsap.set(
-            ".archive-shutter",
-            {
-                display: "none"
-            }
-        );
-
+            trigger.kill();
+        };
+    });
+
+    mm.add("(max-width: 768px)", () => {
+        gsap.set(".mission-record", {
+            clearProps: "all"
+        });
         ScrollTrigger.refresh();
-    }
-);
-
-
-
-    /*
-     * Refresh after loader disappears.
-     */
+    });
 
     window.addEventListener(
         "robix:introComplete",
         () => {
             ScrollTrigger.refresh();
         },
-        {
-            once: true
-        }
+        { once: true }
     );
-
 }
