@@ -10,6 +10,7 @@ const missions = [
         file: "FILE // 001",
         type: "ROBIX HOSTED EVENT",
         description: "A ROBIX-hosted technical event in Mumbai, created to bring participants together around robotics, engineering and automation.",
+        mobileDescription: "A ROBIX-hosted technical event focused on robotics and automation.",
         year: "2025",
         location: "MUMBAI",
         host: "ROBIX",
@@ -22,6 +23,7 @@ const missions = [
         file: "FILE // 002",
         type: "ROBIX HOSTED EVENT",
         description: "A ROBIX-hosted event in Mumbai focused on hands-on robotics engagement, technical challenge and applied innovation.",
+        mobileDescription: "Hands-on robotics competition focused on engineering and problem-solving.",
         year: "2025",
         location: "MUMBAI",
         host: "ROBIX",
@@ -34,6 +36,7 @@ const missions = [
         file: "FILE // 003",
         type: "ROBIX HOSTED EVENT",
         description: "A ROBIX-hosted robotics event in Mumbai designed around competition, creative problem-solving and engineering execution.",
+        mobileDescription: "A robotics event focused on competition and engineering execution.",
         year: "2025",
         location: "MUMBAI",
         host: "ROBIX",
@@ -46,6 +49,7 @@ const missions = [
         file: "FILE // 004",
         type: "ROBIX HOSTED EVENT",
         description: "A ROBIX-hosted innovation event in Mumbai bringing students together to ideate, build and present technical solutions.",
+        mobileDescription: "An innovation event focused on engineering ideas and creativity.",
         year: "2026",
         location: "MUMBAI",
         host: "ROBIX",
@@ -58,6 +62,7 @@ const missions = [
         file: "FILE // 005",
         type: "ROBIX HOSTED EVENT",
         description: "The next evolution of the IdeaSpark format, hosted by ROBIX in Mumbai to push innovation, teamwork and practical technical thinking.",
+        mobileDescription: "The next Ideaspark edition focused on practical innovation and engineering.",
         year: "2026",
         location: "MUMBAI",
         host: "ROBIX",
@@ -65,6 +70,11 @@ const missions = [
         poster: "/Posters_for_events/ideaspark20.jpeg"
     }
 ];
+
+function getMissionDescription(mission) {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    return (isMobile && mission.mobileDescription) ? mission.mobileDescription : mission.description;
+}
 
 const CYBER_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
@@ -179,52 +189,54 @@ export function initMissions() {
     function triggerMissionDecrypt(mission, nextIndex) {
         if (!mission) return;
 
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
         runCybertronianDecrypt(
             missionLabel,
             `MISSION // ${String(nextIndex + 1).padStart(2, "0")}`,
-            { duration: 260, steps: 8 }
+            { duration: isMobile ? 320 : 260, steps: 8 }
         );
 
         runCybertronianDecrypt(
             missionType,
             mission.type,
-            { duration: 280, steps: 8 }
+            { duration: isMobile ? 320 : 280, steps: 8 }
         );
 
         runCybertronianDecrypt(
             missionTitle,
             mission.title.replace(" ", "\n"),
-            { duration: 800, steps: 16 }
+            { duration: isMobile ? 650 : 800, steps: isMobile ? 12 : 16 }
         );
 
         runCybertronianDecrypt(
             missionDescription,
-            mission.description,
-            { duration: 950, steps: 18 }
+            getMissionDescription(mission),
+            { duration: isMobile ? 750 : 950, steps: isMobile ? 14 : 18 }
         );
 
         runCybertronianDecrypt(
             missionYear,
             String(mission.year),
-            { duration: 600, steps: 10 }
+            { duration: isMobile ? 480 : 600, steps: isMobile ? 8 : 10 }
         );
 
         runCybertronianDecrypt(
             missionLocation,
             mission.location,
-            { duration: 220, steps: 6 }
+            { duration: isMobile ? 480 : 220, steps: isMobile ? 8 : 6 }
         );
 
         runCybertronianDecrypt(
             missionHost,
             mission.host || "ROBIX",
-            { duration: 220, steps: 6 }
+            { duration: isMobile ? 480 : 220, steps: isMobile ? 8 : 6 }
         );
 
         runCybertronianDecrypt(
             missionStatus,
             mission.status || "ARCHIVED",
-            { duration: 240, steps: 6 }
+            { duration: isMobile ? 480 : 240, steps: isMobile ? 8 : 6 }
         );
     }
 
@@ -258,7 +270,7 @@ export function initMissions() {
         if (missionLabel) missionLabel.textContent = `MISSION // 01`;
         if (missionType) missionType.textContent = mission.type;
         if (missionTitle) missionTitle.textContent = mission.title.replace(" ", "\n");
-        if (missionDescription) missionDescription.textContent = mission.description;
+        if (missionDescription) missionDescription.textContent = getMissionDescription(mission);
         if (missionYear) missionYear.textContent = mission.year;
         if (missionLocation) missionLocation.textContent = mission.location;
         if (missionHost) missionHost.textContent = mission.host || "ROBIX";
@@ -333,7 +345,7 @@ export function initMissions() {
                     if (missionLabel) missionLabel.textContent = `MISSION // ${String(nextIndex + 1).padStart(2, "0")}`;
                     if (missionType) missionType.textContent = nextMission.type;
                     if (missionTitle) missionTitle.textContent = nextMission.title.replace(" ", "\n");
-                    if (missionDescription) missionDescription.textContent = nextMission.description;
+                    if (missionDescription) missionDescription.textContent = getMissionDescription(nextMission);
                     if (missionYear) missionYear.textContent = nextMission.year;
                     if (missionLocation) missionLocation.textContent = nextMission.location;
                     if (missionHost) missionHost.textContent = nextMission.host || "ROBIX";
@@ -434,15 +446,24 @@ export function initMissions() {
             0
         );
 
+        const isMobile = window.matchMedia("(max-width: 768px)").matches;
+        const wipeDuration = isMobile ? 0.7 : 0.9;
+        const wipeStart = isMobile ? 0.05 : 0.08;
+        const decryptTime = isMobile ? 0.32 : 0.42;
+        const titleInTime = isMobile ? 0.36 : 0.48;
+        const metaInTime = isMobile ? 0.42 : 0.55;
+        const titleDuration = isMobile ? 0.55 : 0.8;
+        const metaDuration = isMobile ? 0.35 : 0.42;
+
         // 2. Scanner sweeps down
         missionTransition.to(
             scanner,
             {
                 y: stageHeight,
-                duration: 0.9,
+                duration: wipeDuration,
                 ease: "none"
             },
-            0.08
+            wipeStart
         );
 
         // 3. Current poster wipes away from top to bottom (revealing next poster underneath)
@@ -450,17 +471,17 @@ export function initMissions() {
             posterCurrent,
             {
                 clipPath: "inset(100% 0 0 0)",
-                duration: 0.9,
+                duration: wipeDuration,
                 ease: "none"
             },
-            0.08
+            wipeStart
         );
 
-        // 4. Midway through wipe (0.22s): update data and trigger Cybertronian decrypt
+        // 4. Midway through wipe: update data and trigger Cybertronian decrypt
         missionTransition.add(() => {
             setMissionContent(nextIndex);
             triggerMissionDecrypt(nextMission, nextIndex);
-        }, 0.42);
+        }, decryptTime);
 
         // 5. Bring new text back in smoothly
         missionTransition.fromTo(
@@ -472,10 +493,10 @@ export function initMissions() {
             {
                 opacity: 1,
                 y: 0,
-                duration: 0.8,
+                duration: titleDuration,
                 ease: "power3.out"
             },
-            0.48
+            titleInTime
         );
 
         missionTransition.fromTo(
@@ -494,15 +515,15 @@ export function initMissions() {
             {
                 opacity: 1,
                 y: 0,
-                duration: 0.42,
-                stagger: 0.05,
+                duration: metaDuration,
+                stagger: 0.04,
                 ease: "power2.out"
             },
-            0.55
+            metaInTime
         );
     }
 
-    // MatchMedia: Desktop pinning vs Mobile natural vertical flow
+    // MatchMedia: Desktop pinning vs Mobile pinned single-record viewer
     const mm = gsap.matchMedia();
 
     mm.add("(min-width: 769px)", () => {
@@ -534,11 +555,47 @@ export function initMissions() {
     });
 
     mm.add("(max-width: 768px)", () => {
-        gsap.set(".mission-record", {
-            clearProps: "all"
+        const total = missions.length;
+
+        const mobileTrigger = ScrollTrigger.create({
+            trigger: ".mission-mobile-stage",
+            start: "top top",
+            end: () => "+=" + (window.innerHeight * (total - 1) * 0.9),
+            pin: true,
+            scrub: 0.5,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: self => {
+                const nextIndex = Math.min(
+                    total - 1,
+                    Math.round(self.progress * (total - 1))
+                );
+
+                targetMissionIndex = nextIndex;
+                if (nextIndex !== activeMissionIndex && !isTransitioning) {
+                    showMission(nextIndex);
+                }
+            }
         });
-        ScrollTrigger.refresh();
+
+        return () => {
+            if (missionTransition) {
+                missionTransition.kill();
+            }
+            mobileTrigger.kill();
+        };
     });
+
+    const mobileQuery = window.matchMedia("(max-width: 768px)");
+    const handleViewportChange = () => {
+        const current = missions[activeMissionIndex];
+        if (current && missionDescription && !isTransitioning) {
+            missionDescription.textContent = getMissionDescription(current);
+        }
+    };
+    if (mobileQuery.addEventListener) {
+        mobileQuery.addEventListener("change", handleViewportChange);
+    }
 
     window.addEventListener(
         "robix:introComplete",

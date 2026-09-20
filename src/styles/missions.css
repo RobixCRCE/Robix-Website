@@ -536,65 +536,193 @@
 
 
 /* =========================================
-   RESPONSIVE
+   RESPONSIVE (MOBILE PINNED ARCHIVE)
    ========================================= */
 
-@media (max-width: 900px) {
+@media (max-width: 768px) {
 
-    .mission-record {
-        grid-template-columns: 1fr;
-
-        align-content: center;
-
-        gap: 28px;
-
-        padding-top: 22vh;
+    #missions {
+        position: relative;
+        width: 100%;
+        min-height: auto;
+        overflow: visible;
     }
 
-
-    .mission-copy h3 {
-        font-size:
-            clamp(3.5rem,
-                11vw,
-                6rem);
+    .missions-header {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        max-width: 100%;
+        padding: 50px 24px 16px;
+        z-index: 10;
     }
 
-
-    .mission-visual {
-        height: 40vh;
+    .missions-header h2 {
+        font-size: clamp(2.8rem, 13vw, 4.2rem);
+        line-height: 0.85;
     }
 
+    .missions-header p {
+        display: block;
+        max-width: 100%;
+        margin-top: 14px;
+        font-size: 0.9rem;
+        line-height: 1.55;
+        color: #888;
+    }
 
     .mission-counter {
-        right: 5vw;
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        width: calc(100% - 48px);
+        margin: 8px 24px 24px;
+        z-index: 10;
+        grid-template-columns: auto 1fr auto;
+    }
 
-        grid-template-columns:
-            auto 60px auto;
+    .mission-mobile-stage {
+        position: relative;
+        width: 100%;
+        min-height: 100svh;
+        height: auto;
+        padding: 22px 20px 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        overflow: hidden;
+    }
+
+    .mission-mobile-stage .mission-record {
+        position: relative;
+        inset: auto;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        padding: 0;
+        gap: 0;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .mission-copy {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        margin-top: 0;
+        padding-top: 0;
+        flex-shrink: 0;
+    }
+
+    .mission-title {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 0;
+        margin-bottom: 12px;
+        font-size: clamp(2rem, 9.5vw, 3rem);
+        line-height: 0.95;
+        letter-spacing: -0.05em;
+        white-space: normal;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
+
+    .mission-description {
+        margin-top: 0;
+        margin-bottom: 18px;
+        font-size: 0.88rem;
+        line-height: 1.45;
+        color: #858585;
+    }
+
+    /* Hide metadata, mission label, type, and decorative labels on mobile */
+    .mission-id,
+    .mission-label,
+    .mission-type,
+    .mission-data,
+    .mission-image-label,
+    .label-a,
+    .label-b,
+    .mission-visual-label,
+    .mission-poster-caption,
+    .mission-visual-footer {
+        display: none !important;
+    }
+
+    /* --- VISUAL / POSTER FRAME --- */
+    .mission-visual {
+        position: relative;
+        width: 100%;
+        height: clamp(330px, 43svh, 390px);
+        min-height: 330px;
+        max-height: 390px;
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .mission-image-frame.mission-visual-frame,
+    .mission-visual-frame {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 4px;
+        background: #060607;
+        clip-path: none !important;
+        box-sizing: border-box;
+    }
+
+    .mission-image-frame::before {
+        display: none !important;
+    }
+
+    .mission-poster-stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    /* Poster images: hardened with !important to beat global and conflicting rules */
+    .mission-poster,
+    .mission-poster-current,
+    .mission-poster-next {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important;
+        object-position: center !important;
+        display: block !important;
+        visibility: visible !important;
     }
 
 }
 
+@media (max-width: 390px) {
 
-@media (max-width: 600px) {
-
-    .missions-header p {
-        display: none;
+    .mission-title {
+        font-size: clamp(1.85rem, 9vw, 2.6rem);
     }
-
-
-    .mission-record {
-        padding-left: 6vw;
-        padding-right: 6vw;
-    }
-
-
-    .mission-data {
-        margin-top: 22px;
-    }
-
 
     .mission-visual {
-        height: 36vh;
+        height: clamp(320px, 42svh, 380px);
+        min-height: 320px;
+        max-height: 380px;
     }
 
 }
