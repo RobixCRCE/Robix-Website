@@ -349,6 +349,18 @@
 
 
 /* =========================================
+   CREW SELECTOR — LEADS + MEMBERS
+   Two tabs, roughly 50% width each.
+   ========================================= */
+
+.crew-selector {
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+}
+
+
+
+/* =========================================
    TEAM STAGE
    ========================================= */
 
@@ -541,6 +553,28 @@
 }
 
 
+/*
+ * Department stays visible as card metadata,
+ * rendered above the role title.
+ */
+
+.leader-meta .leader-dept {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #7a7a7a;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 8px;
+
+  letter-spacing: 0.2em;
+}
+
+
 .leader-meta h4 {
   margin:
     10px 0 0;
@@ -597,6 +631,17 @@
 }
 
 
+/*
+ * Members tab uses a denser grid than
+ * the large leadership cards.
+ */
+
+.members-dense {
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+}
+
+
 .member-card {
   padding: 10px;
 
@@ -647,6 +692,23 @@
   font-size: 0.85rem;
 
   font-weight: 500;
+}
+
+.member-card .member-dept {
+  display: block;
+
+  margin:
+    10px 2px 0;
+
+  color: #7a7a7a;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size: 8px;
+
+  letter-spacing: 0.18em;
 }
 
 .member-role {

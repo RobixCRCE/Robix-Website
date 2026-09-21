@@ -368,6 +368,43 @@
 
 
     /* =====================================================
+       CREW / LEADS + MEMBERS
+       ===================================================== */
+
+    .crew-selector {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .lead-layout {
+        grid-template-columns:
+            minmax(0, 1fr);
+    }
+
+    .leader-card,
+    .member-card {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .leader-meta {
+        min-width: 0;
+    }
+
+    .leader-meta h4,
+    .member-card h5,
+    .leader-meta .leader-dept,
+    .member-card .member-dept {
+        overflow-wrap: break-word;
+    }
+
+    .members-dense {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+
+    /* =====================================================
        CONTACT
        THIS IS THE IMPORTANT FIX
        ===================================================== */
@@ -700,6 +737,12 @@
             clamp(2.05rem,
                 9.4vw,
                 2.8rem);
+    }
+
+    /* Crew tabs stack vertically on very narrow screens */
+    .crew-selector {
+        grid-template-columns:
+            minmax(0, 1fr);
     }
 
     /* =========================================================
